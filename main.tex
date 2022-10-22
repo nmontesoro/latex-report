@@ -1,0 +1,77 @@
+\documentclass[spanish, 12pt]{article}
+\usepackage[T1]{fontenc} % https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage[spanish,es-tabla]{babel} % Traducciones, y cambia cuadro por tabla
+\usepackage{csquotes} % Mejor soporte de comillas en bibliografía
+\usepackage{circuitikz} % Para armar circuitos directamente en LaTeX
+\usepackage{amsmath} % Mejoras en fórmulas matemáticas
+\usepackage{multirow} % Multples filas 
+\usepackage{multicol} % Múltiples columnas
+\usepackage[a4paper, portrait, margin=2.5cm]{geometry} % Ajusto márgenes y tamaño de página
+\usepackage{booktabs} % Mejoras en tablas
+\usepackage{graphicx} % Extended interface for graphics inclusion
+
+% --- Para listar código
+\usepackage{listings} 
+\usepackage{xcolor}
+% --- Para figuras y subfiguras
+\usepackage{caption}
+\usepackage{subcaption}
+% --- Para el título
+\usepackage[absolute,overlay]{textpos}
+% --- Para hipervínculos
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+}
+
+\urlstyle{same}
+
+% --- Colores para listados de código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% ---
+
+% --- Configuración de bibiliografía
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+% ---
+
+\begin{document}
+
+    \input{title}
+    \tableofcontents
+    
+    \newpage
+    \section{Bibliografía}
+    \printbibliography[heading=none]
+
+\end{document}
