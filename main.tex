@@ -65,6 +65,22 @@ sorting=ynt
 \addbibresource{references.bib}
 % ---
 
+% --- Para informes de tipo pregunta/respuesta
+\newcounter{question}
+\setcounter{question}{0}
+\newcommand{\question}[1]{
+    \vspace{0.5cm}
+    \stepcounter{question}
+    \noindent
+    \thequestion. #1\par
+    \vspace{0.2cm}
+    \hline
+}
+\newcommand{\answer}[1]{
+    \vspace{0.2cm}
+    #1
+}
+
 \begin{document}
 
     \input{title}
