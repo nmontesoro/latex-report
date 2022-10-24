@@ -10,7 +10,6 @@
 \usepackage{booktabs} % Mejoras en tablas
 \usepackage{graphicx} % Extended interface for graphics inclusion
 \usepackage{float} % Mejor soporte de float para figuras
-\usepackage{siunitx} % Soporte de unidades
 \usepackage{cancel} % Permite cancelar términos
 
 % --- Para listar código
@@ -80,6 +79,12 @@ sorting=ynt
 \newcommand{\answer}[1]{
     \vspace{0.2cm}
     #1
+}
+
+% --- Unidades
+\usepackage{siunitx}
+\sisetup{
+    separate-uncertainty=true
 }
 
 \begin{document}
