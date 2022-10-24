@@ -71,11 +71,9 @@ sorting=ynt
 \newcounter{question}
 \setcounter{question}{0}
 \newcommand{\question}[1]{
-    \vspace{0.5cm}
     \stepcounter{question}
     \noindent
-    \thequestion. #1\par
-    \vspace{0.2cm}
+    {\large\thequestion. #1\par}
     \noindent\rule{\textwidth}{0.2mm}
 }
 \newcommand{\answer}[1]{
