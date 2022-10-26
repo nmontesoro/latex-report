@@ -29,37 +29,3 @@ Se observa que el valor de la ganancia \textbf{no depende del valor de la resist
 
 Como puede observarse, el valor de la ganancia no debería verse afectado por el resistor $R_3$. Esto se debe a la alta resistencia de entrada del operacional (que de hecho es infinita en este modelo ideal).
 
-
-\subsection{Datos obtenidos}
-
-La ganancia del operacional puede calcularse experimentalmente como
-
-\begin{equation}
-    \label{ec:1-teoria:ganancia-experimental}
-    A = \frac{v_o}{v_i}
-\end{equation}
-
-\begin{equation}
-    \label{ec:1-teoria:err-ganancia-experimental}
-    \Delta A = \left| \frac{1}{v_i} \right| \Delta v_o + \left| -\frac{v_o}{{v_i}^2} \right| \Delta v_i
-\end{equation}
-
-Los resultados de esta operación se encuentran en la tabla \ref{tab:1-teoria:ganancia-experimental}.
-
-\sisetup{
-    round-mode = uncertainty,
-    round-precision = 1
-}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{@{}rr@{}}
-        \toprule
-        $R_L$ (\si{\kilo\ohm}) & $A$ \\
-        \midrule
-        \input{data/tables/1-ganancia-medida}
-    \end{tabular}
-    \caption{Valores experimentales de ganancia}
-    \label{tab:1-teoria:ganancia-experimental}
-\end{table}
-

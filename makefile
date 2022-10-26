@@ -1,5 +1,5 @@
 .PHONY: clean
-PARTE1 = parte1.tex parte1-teorica.tex data/tables/1-ganancia.tex data/tables/1-ganancia-medida.tex
+PARTE1 = parte1.tex parte1-teorica.tex data/tables/1-ganancia.tex data/tables/1-ganancia-medida.tex parte1-datos.tex
 OCTAVE = octave -Wq -p code
 
 all: main.pdf
