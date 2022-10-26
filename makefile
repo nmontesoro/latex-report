@@ -1,5 +1,5 @@
 .PHONY: clean
-PARTE1 = parte1.tex parte1-teorica.tex data/tables/1-ganancia.tex data/tables/1-ganancia-medida.tex parte1-datos.tex
+PARTE1 = parte1.tex parte1-teorica.tex data/tables/1-ganancia.tex data/tables/1-ganancia-medida.tex parte1-datos.tex parte1-analisis.tex img/1-analisis-ganancia.eps
 OCTAVE = octave -Wq -p code
 
 all: main.pdf
@@ -14,6 +14,9 @@ data/tables/1-ganancia.tex: code/ganancia.m code/CalcGanancia.m data/1-res.csv c
 
 data/tables/1-ganancia-medida.tex: code/CalcGananciaExperimental.m code/gananciaexperimental.m data/1-mediciones.csv code/ImportData.m
 	$(OCTAVE) code/gananciaexperimental.m
+
+img/1-analisis-ganancia.eps: code/analisisganancia.m code/ImportData.m
+	$(OCTAVE) code/analisisganancia.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
