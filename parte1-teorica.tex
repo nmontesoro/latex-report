@@ -13,3 +13,16 @@ Considerando al operacional como un elemento ideal (ver sección \ref{sec:intro}
              + \left| - \frac{R_2}{{R_1}^2} \right| \Delta R_1
 \end{equation}
 
+Se observa que el valor de la ganancia \textbf{no depende del valor de la resistencia de carga}. Considerando que $\Delta R_i = 0.2\,R_i\ \forall\ i$, ya que los resistores utilizados tienen una tolerancia de $\pm 20\%$, el análisis anterior resulta en la tabla \ref{tab:1-teoria:valores}:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rrr@{}}
+        \toprule
+        $R_1$ (\si{\kilo\ohm}) & $R_2$ (\si{\kilo\ohm}) & $A$ \\
+        \midrule
+        \input{data/tables/1-ganancia} \\ \bottomrule
+    \end{tabular}
+    \caption{Valores de ganancia calculados}
+    \label{tab:1-teoria:valores}
+\end{table}
