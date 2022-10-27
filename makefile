@@ -16,9 +16,10 @@ main.pdf: main.tex title.tex references.bib src/intro.tex src/metodos.tex $(PART
 data/1/mediciones-parsed.csv: data/1/mediciones.csv
 	$(RMHEADERS) $< > $@
 
-presentacion-datos-1: code/1/GenTablasDatos.m data/1/mediciones-parsed.csv code/1/CalcGananciaAnalitica.m code/1/GenSnippetGananciaAnalitica.m
+presentacion-datos-1: code/1/GenTablasDatos.m data/1/mediciones-parsed.csv code/1/CalcGananciaAnalitica.m code/1/GenSnippetGananciaAnalitica.m code/1/GenSnippetResistencias.m
 	$(OCTAVE1) code/1/GenSnippetGananciaAnalitica.m
 	$(OCTAVE1) code/1/GenTablasDatos.m
+	$(OCTAVE1) code/1/GenSnippetResistencias.m
 	touch presentacion-datos-1
 
 clean:
