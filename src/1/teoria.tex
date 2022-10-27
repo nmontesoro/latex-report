@@ -1,0 +1,32 @@
+\subsection{Resolución teórica}
+
+Considerando al operacional como un elemento ideal (ver sección \ref{sec:intro})
+se sabe que su resistencia de entrada es infinita. Por tal motivo no circulará
+corriente a través de la resistencia $R_3$, lo cual implica que no habrá caída
+de tensión alguna entre sus terminales. Efectivamente es como tener el circuito
+descrito en la sección \ref{sec:intro:opamp-inversor} y por ende se puede usar
+la ecuación \ref{ec:intro:opamp-inversor}. Entonces queda:
+
+\begin{equation}
+    \label{ec:1-teoria:ganancia}
+    A = -\frac{R_2}{R_1}
+\end{equation}
+
+\begin{equation}
+    \label{ec:1-teoria:err-ganancia}
+    \Delta A = \left| - \frac{1}{R_1} \right| \Delta R_2
+             + \left| - \frac{R_2}{{R_1}^2} \right| \Delta R_1
+\end{equation}
+
+Se observa que el valor de la ganancia \textbf{no depende del valor de la
+resistencia de carga}. Considerando que $\Delta R_i = 0.2\,R_i\ \forall\ i$, ya
+que los resistores utilizados tienen una tolerancia de $\pm 20\%$, el análisis
+anterior resulta en:
+
+\[
+    \input{src/1/snippets/ganancia-analitica}
+\]
+
+Como puede observarse, el valor de la ganancia no debería verse afectado por el
+resistor $R_3$. Esto se debe a la alta resistencia de entrada del operacional
+(que de hecho es infinita en este modelo ideal).
