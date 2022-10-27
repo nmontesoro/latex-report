@@ -43,7 +43,9 @@ WriteToFile("src/1/tables/tensiones-2.tex", data);
 [RL, DRL, I, DI] = CalcCorrientes();
 data = [data(:, 1), reshape([I;DI], size(I,1), [])];
 % Paso a mA
-data(:, 2:end) = data(:, 2:end) .* 1000;
+data(:, 2:end) = data(:, 2:end) ./ 1e-3;
+% Paso IR3 a nA
+data(:, 6:7) = data(:, 6:7) .* 1e6;
 WriteToFile("src/1/tables/corrientes.tex", data);
 
 % Ganancia experimental
