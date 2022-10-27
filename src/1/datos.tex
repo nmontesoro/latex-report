@@ -1,0 +1,68 @@
+\subsection{Datos obtenidos}
+
+Los datos obtenidos se encuentran en las tablas \ref{tab:1-datos:tensiones-1}, \ref{tab:1-datos:tensiones-2} y \ref{tab:1-datos:corrientes}:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rrrrrr@{}}
+        \toprule
+        $R_L$ (\si{\kilo\ohm}) & $v_i$ (\si{\volt}) & $v_o$ (\si{\volt}) & 
+            $v_+$ (\si{\milli\volt}) & $v_-$ (\si{\milli\volt}) &
+            $v_+ - v_-$ (\si{\milli\volt}) \\
+        \midrule
+        \input{src/1/tables/tensiones-1}
+    \end{tabular}
+    \caption{Tensiones medidas en el circuito (parte 1)}
+    \label{tab:1-datos:tensiones-1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rrrrrr@{}}
+        \toprule
+        $R_L$ (\si{\kilo\ohm}) & $V_{R_1}$ (\si{\volt}) & $V_{R_2}$ (\si{\volt})& $V_{R_3}$ (\si{\milli\volt}) & $V_{R_L}$ (\si{\volt}) \\
+        \midrule
+        \input{src/1/tables/tensiones-2}
+    \end{tabular}
+    \caption{Tensiones medidas en el circuito (parte 2)}
+    \label{tab:1-datos:tensiones-2}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rrrrr@{}}
+        \toprule
+        $R_L$ (\si{\kilo\ohm}) & $I_{R_1}$ (\si{\milli\ampere}) & $I_{R_2}$ (\si{\milli\ampere}) & $I_{R_3}$ (\si{\milli\ampere}) & $I_{R_L}$ (\si{\milli\ampere}) \\
+        \midrule
+        \input{src/1/tables/corrientes}
+    \end{tabular}
+    \caption{Corrientes calculadas en el circuito}
+    \label{tab:1-datos:corrientes}
+\end{table}
+
+La ganancia del operacional puede calcularse experimentalmente como
+
+\begin{equation}
+    \label{ec:1-teoria:ganancia-experimental}
+    A = \frac{v_o}{v_i}
+\end{equation}
+
+\begin{equation}
+    \label{ec:1-teoria:err-ganancia-experimental}
+    \Delta A = \left| \frac{1}{v_i} \right| \Delta v_o + \left| -\frac{v_o}{{v_i}^2} \right| \Delta v_i
+\end{equation}
+
+Los resultados de esta operación se encuentran en la tabla \ref{tab:1-teoria:ganancia-experimental}.
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rr@{}}
+        \toprule
+        $R_L$ (\si{\kilo\ohm}) & $A$ \\
+        \midrule
+        \input{src/1/tables/ganancia-experimental}
+    \end{tabular}
+    \caption{Valores experimentales de ganancia}
+    \label{tab:1-teoria:ganancia-experimental}
+\end{table}
