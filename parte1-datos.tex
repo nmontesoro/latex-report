@@ -1,5 +1,35 @@
 \subsection{Datos obtenidos}
 
+Los datos obtenidos se encuentran en las tablas \ref{tab:1-datos:tensiones-1} y \ref{tab:1-datos:tensiones-2}:
+
+\sisetup{
+    round-mode = uncertainty,
+    round-precision = 1
+}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rrrrrr@{}}
+        \toprule
+        $R_L$ (\si{\kilo\ohm}) & $v_i$ (\si{\volt}) & $v_o$ (\si{\volt}) & $v_+$ (\si{\milli\volt}) & $v_-$ (\si{\milli\volt}) & $v_+ - v_-$ (\si{\milli\volt}) \\
+        \midrule
+        \input{data/tables/1-tensiones-1}
+    \end{tabular}
+    \caption{Tensiones medidas en el circuito (parte 1)}
+    \label{tab:1-datos:tensiones-1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}rrrrrr@{}}
+        \toprule
+        $R_L$ (\si{\kilo\ohm}) & $V_{R_1}$ (\si{\volt}) & $V_{R_2}$ (\si{\volt})& $V_{R_3}$ (\si{\milli\volt}) & $V_{R_L}$ (\si{\volt}) \\
+        \midrule
+        \input{data/tables/1-tensiones-2}
+    \end{tabular}
+    \caption{Tensiones medidas en el circuito (parte 2)}
+    \label{tab:1-datos:tensiones-2}
+\end{table}
+
 La ganancia del operacional puede calcularse experimentalmente como
 
 \begin{equation}
@@ -14,10 +44,6 @@ La ganancia del operacional puede calcularse experimentalmente como
 
 Los resultados de esta operación se encuentran en la tabla \ref{tab:1-teoria:ganancia-experimental}.
 
-\sisetup{
-    round-mode = uncertainty,
-    round-precision = 1
-}
 
 \begin{table}[H]
     \centering
