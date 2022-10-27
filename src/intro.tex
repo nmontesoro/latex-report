@@ -1,0 +1,59 @@
+\section{Introducción}
+\label{sec:intro}
+
+El \textbf{amplificador operacional} es un dispositivo que se comporta como una fuente de tensión controlada por tensión. También puede servir para generar una corriente controlada (por tensión o por corriente), y es capaz de sumar señales de entrada, amplificarlas, integrarlas o diferenciarlas \cite[pág. 176]{FDCE}. 
+
+% TODO: Agregar figura del opamp, explicar sus terminales
+
+Un \textbf{amplificador operacional ideal} tiene las siguientes características:
+
+\begin{itemize}
+    \item Ganancia infinita, $A\approx\infty$
+    \item Resistencia de entrada infinita, $R_{\text{in}} \approx \infty$
+    \item Resistencia de salida cero, $R_{\text{out}} \approx 0$
+\end{itemize}
+
+Si bien al utilizar estas suposiciones se consigue una respuesta aproximada, la mayoría de los operacionales tienen ganancias e impedancias de entrada tales que este análisis se torna aceptable \cite[pág. 180]{FDCE}.
+
+Un amplificador operacional se puede conectar de diversas maneras:
+
+\begin{itemize}
+    \item Amplificador inversor
+    \item Amplificador no inversor
+    \item Amplificador seguidor de tensión
+    \item Amplificador sumador
+    \item Amplificador diferencial
+\end{itemize}
+
+Además es posible conectar varios amplificadores en cascada, en un arreglo de dos o más circuitos dispuestos uno tras otro, de manera que la salida de uno conforme la entrada del siguiente \cite[pág. 191]{FDCE}.
+
+\subsection{Amplificador inversor}
+\label{sec:intro:opamp-inversor}
+
+% TODO: Agregar figuras
+
+Para configurar al amplificador como inversor, se conecta a tierra la entrada no inversora. La señal de entrada $v_i$ se conecta a la entrada inversora a través de $R_1$, y se conecta un resistor $R_2$ entre la entrada inversora y la salida (éste resistor es ocasionalmente llamado \textit{resistor de retroalimentación}) \cite[pág. 181]{FDCE}.
+Si asumimos que se trata de un operacional ideal entonces $v_{-} = v_{+}$, y $v_{+} = \SI{0}{\volt}$ por estar conectada a masa la terminal no inversora. Siendo $v_o$ la tensión de salida y $A_v$ la ganancia en tensión, al aplicar la LCK en la entrada inversora se llega a que
+
+\begin{equation}
+    \label{ec:intro:opamp-inversor}
+    v_o = - \frac{R_2}{R_1} \, v_i = A_v v_i
+\end{equation}
+
+Entonces \textbf{un amplificador inversor invierte la polaridad de entrada a la vez que amplifica la señal}.
+
+\subsection{Amplificador no inversor}
+\label{sec:intro:opamp-noinversor}
+
+% TODO: Agregar figuras
+
+En este caso se aplica la tensión de entrada a la terminal no inversora, conectando $R_1$ entre masa y la terminal inversora. Dado que $v_{-} = v_{+} = v_i$, al aplicar la LCK en la terminal inversora se encuentra la relación entre la tensión de salida y la tensión de entrada, que es:
+
+\begin{equation}
+    \label{ec:intro:opamp-noinversor}
+    v_o = \left(1 + \frac{R_2}{R_1}\right) \, v_i = A_v v_i
+\end{equation}
+
+Como la ganancia es un número positivo, \textbf{un amplificador no inversor produce una señal de salida con la misma polaridad que la señal de entrada}.
+
+A su vez, si se diera el caso en que $R_2 = \SI{0}{\ohm}$ (cortocircuito) o $R_1 = \infty$ (circuito abierto), o ambos, se configura el circuito conocido como \textbf{seguidor de tensión} o \textbf{amplificador de ganancia unitaria}, dado que $v_o = v_i$. Tiene una impedancia de entrada muy alta, por lo que puede ser utilizado para aislar un circuito de otro \cite[pág. 184]{FDCE}.

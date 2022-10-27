@@ -4,7 +4,7 @@ RMHEADERS = tail -n +2
 
 all: $(DATA) main.pdf
 
-main.pdf: main.tex title.tex references.bib
+main.pdf: main.tex title.tex references.bib src/intro.tex
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
