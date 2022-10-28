@@ -8,7 +8,8 @@ C4 = src/cuestionario/4.tex
 C5 = src/cuestionario/5.tex
 C6 = src/cuestionario/6.tex src/cuestionario/6/longitud.tex src/cuestionario/6/periodo.tex src/cuestionario/6/gravedad.tex
 C7 = src/cuestionario/7.tex src/cuestionario/7/longitud.tex src/cuestionario/7/periodo.tex src/cuestionario/7/gravedad.tex
-CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4) $(C5) $(C6) $(C7)
+C8 = src/cuestionario/8.tex img/gauss.tikz
+CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4) $(C5) $(C6) $(C7) $(C8)
 
 all: main.pdf
 
@@ -31,6 +32,9 @@ src/cuestionario/6/%.tex: code/gravedad-6.m code/gravedad.m
 
 src/cuestionario/7/%.tex: code/gravedad-7.m code/gravedad.m
 	$(OCTAVE) code/gravedad-7.m
+
+img/gauss.tikz: code/fgaussian.m code/PlotGaussian.m
+	$(OCTAVE) code/PlotGaussian.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
