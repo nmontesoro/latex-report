@@ -5,7 +5,8 @@ C1 = src/cuestionario/1.tex img/histograma.tikz
 C2 = src/cuestionario/2.tex img/media.tikz
 C3 = src/cuestionario/3.tex img/desviacion.tikz
 C4 = src/cuestionario/4.tex
-CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4)
+C5 = src/cuestionario/5.tex
+CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4) $(C5)
 
 all: main.pdf
 
