@@ -1,0 +1,31 @@
+\question{Construya un gráfico de la desviación estándar muestral en función de
+la cantidad de medidas, en el orden que estas fueron tomadas. Incluya
+barras de error en los puntos.}
+
+\answer{
+    La desviación estándar de una muestra de tamaño $N$ se calcula según la ec.
+    \ref{ec:cuestionario:desviacion-estandar}, mientras que su incertidumbre
+    se calcula con la ec. \ref{ec:cuestionario:error-desviacion-estandar}:
+
+    \begin{equation}
+        \label{ec:cuestionario:desviacion-estandar}
+        \sigma_{n-1} = \sqrt{\frac{ \sum \left( x_i - \bar{X} \right)^2}{N - 1}}
+    \end{equation}
+    
+    \begin{equation}
+        \label{ec:cuestionario:error-desviacion-estandar}
+        \sigma_{\sigma} = \frac{3\,\sigma_{n-1}}
+                        {\sqrt{2\,\left(N-1\right)}}
+    \end{equation}
+
+    Usando las fórmulas anteriores se consigue el gráfico de la fig.
+    \ref{fig:cuestionario:desviacion}
+
+    \begin{figure}[H]
+        \centering
+        \input{img/desviacion.tikz}
+        \caption{Desviación estándar}
+        \label{fig:cuestionario:desviacion}
+    \end{figure}
+}
+    

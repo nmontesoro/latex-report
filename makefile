@@ -3,7 +3,8 @@
 OCTAVE = octave -Wq -p code
 C1 = src/cuestionario/1.tex img/histograma.tikz
 C2 = src/cuestionario/2.tex img/media.tikz
-CUESTIONARIO = src/cuestionario.tex $(C1) $(C2)
+C3 = src/cuestionario/3.tex img/desviacion.tikz
+CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3)
 
 all: main.pdf
 
@@ -17,6 +18,9 @@ img/histograma.tikz: code/histograma.m
 
 img/media.tikz: code/media.m
 	$(OCTAVE) code/media.m
+
+img/desviacion.tikz: code/desviacion.m
+	$(OCTAVE) code/desviacion.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
