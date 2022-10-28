@@ -2,7 +2,7 @@
 
 all: main.pdf
 
-main.pdf: main.tex title.tex references.bib src/intro.tex
+main.pdf: main.tex title.tex references.bib src/intro.tex src/procedimiento.tex
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
