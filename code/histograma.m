@@ -6,6 +6,7 @@ c = 9;
 
 % Construyo el histograma
 hist(periodos, c);
+colormap(summer());
 xlabel("$T$ (\\si{\\second})");
 ylabel("$f_a$");
 grid on;
