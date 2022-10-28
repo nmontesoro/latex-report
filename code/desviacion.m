@@ -21,7 +21,7 @@ end
 errorbar(n, desv, err, ".");
 xlim([1 200]);
 xlabel("$N$");
-ylabel("$\\sigma_{n-1}$");
+ylabel("$\\sigma_{n-1}$ (\\si{\\second})");
 xticks([1 50:50:200]);
 grid on;
 

@@ -19,7 +19,7 @@ end
 % Grafico
 errorbar(n, media, desv, ".");
 xlabel("$N$");
-ylabel("$\\bar{T}$");
+ylabel("$\\bar{T}$ (\\si{\\second})");
 xlim([1, 200])
 xticks([1 50:50:200]);
 grid on;
