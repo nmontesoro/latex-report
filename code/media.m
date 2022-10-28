@@ -20,7 +20,7 @@ end
 errorbar(n, media, desv, ".");
 xlabel("$N$");
 ylabel("$\\bar{T}$");
-xlim([0, 200])
+xlim([1, 200])
 xticks([1 50:50:200]);
 grid on;
 
