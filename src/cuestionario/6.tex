@@ -1,0 +1,28 @@
+\question{Calcule e informe la constante de la gravedad para la varilla que 
+    midió doscientas veces con su error.}
+
+\answer{
+    Despejando $g$ de la ecuación \ref{ec:intro:periodo} y propagando el error
+    nos queda:
+
+    \begin{equation}
+        \label{ec:cuestionario:gravedad}
+        g = \frac{8 \pi^2 L}{3 T^2}
+    \end{equation}
+
+    \begin{equation}
+        \label{ec:cuestionario:error-gravedad}
+        \Delta g = \frac{8}{3} \pi^2 \left(
+                   \frac{\Delta L}{T^2} + \frac{2L}{T^3}
+                   \Delta T \right)
+    \end{equation}
+
+    La longitud de la primera varilla es
+    $L = \input{src/cuestionario/6/longitud}$. Tomando 
+    $T = \bar{T} + \frac{3\,\sigma_{n-1}}{\sqrt{N}} = \input{src/cuestionario/6/periodo}$ se
+    obtiene
+
+    \[
+        g = \input{src/cuestionario/6/gravedad}
+    \]
+}

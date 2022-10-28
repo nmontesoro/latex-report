@@ -6,7 +6,8 @@ C2 = src/cuestionario/2.tex img/media.tikz
 C3 = src/cuestionario/3.tex img/desviacion.tikz
 C4 = src/cuestionario/4.tex
 C5 = src/cuestionario/5.tex
-CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4) $(C5)
+C6 = src/cuestionario/6.tex src/cuestionario/6/longitud.tex src/cuestionario/6/periodo.tex src/cuestionario/6/gravedad.tex
+CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4) $(C5) $(C6)
 
 all: main.pdf
 
@@ -23,6 +24,9 @@ img/media.tikz: code/media.m
 
 img/desviacion.tikz: code/desviacion.m
 	$(OCTAVE) code/desviacion.m
+
+src/cuestionario/6/%.tex: code/gravedad-6.m code/gravedad.m
+	$(OCTAVE) code/gravedad-6.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
