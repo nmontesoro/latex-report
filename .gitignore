@@ -7,3 +7,5 @@
 *.pdf
 *.run.xml
 *.toc
+
+img/histograma.tikz

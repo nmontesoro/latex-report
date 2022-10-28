@@ -1,0 +1,22 @@
+\question{Construya un histograma con sus medidas. Comente acerca de la 
+forma obtenida}
+
+\answer{
+    Se calcula la cantidad de divisiones según la regla de Sturges
+    \cite{sturges}. Siendo $M = 200$ el tamaño de la muestra,
+
+    \begin{equation}
+        \label{ec:cuestionario:sturges}
+        c = 1 + \log_2 M = 9
+    \end{equation}
+
+    Luego se construye el histograma de la fig.
+    \ref{fig:cuestionario:histograma} usando Octave.
+
+    \begin{figure}[H]
+        \centering
+        \input{img/histograma.tikz}
+        \caption{Histograma}
+        \label{fig:cuestionario:histograma}
+    \end{figure}
+}
