@@ -1,0 +1,31 @@
+\question{Construya un gráfico de la media muestral en función de la 
+cantidad de medidas, en el orden que estas fueron tomadas. Incluya
+barras de error en los puntos.}
+
+\answer{
+    La media muestral se calcula según la ecuación \ref{ec:cuestionario:media},
+    mientras que el error de la media (su desviación) se calcula como la
+    ecuación \ref{ec:cuestionario:error-media},
+
+    \begin{equation}
+        \label{ec:cuestionario:media}
+        \bar{X} = \frac{\sum x_i}{N}
+    \end{equation}
+
+    \begin{equation}
+        \label{ec:cuestionario:error-media}
+        \sigma_{\bar{X}} = \frac{3 \sigma_{n-1}}{\sqrt{N}}
+    \end{equation}
+    donde $\sigma_{n-1}$ es la desviación estándar de la muestra (ver
+    siguiente ejercicio) y $N$ es el tamaño de la muestra.
+
+    Usando las dos ecuaciones anteriores se consigue el gráfico de la
+    fig. \ref{fig:cuestionario:media}.
+
+    \begin{figure}[H]
+        \centering
+        \input{img/media.tikz}
+        \caption{Media muestral}
+        \label{fig:cuestionario:media}
+    \end{figure}
+}
