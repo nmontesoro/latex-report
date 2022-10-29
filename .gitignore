@@ -8,3 +8,4 @@
 *.run.xml
 *.toc
 data/1/mediciones-parsed.csv
+img/1/ganancia.tikz
