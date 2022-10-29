@@ -32,6 +32,12 @@ Además es posible conectar varios amplificadores en cascada, en un arreglo de d
 
 % TODO: Agregar figuras
 
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \input{src/intro/opamp-inversor.tikz}
+\end{wrapfigure}
+
+
 Para configurar al amplificador como inversor, se conecta a tierra la entrada no inversora. La señal de entrada $v_i$ se conecta a la entrada inversora a través de $R_1$, y se conecta un resistor $R_2$ entre la entrada inversora y la salida (éste resistor es ocasionalmente llamado \textit{resistor de retroalimentación}) \cite[pág. 181]{FDCE}.
 Si asumimos que se trata de un operacional ideal entonces $v_{-} = v_{+}$, y $v_{+} = \SI{0}{\volt}$ por estar conectada a masa la terminal no inversora. Siendo $v_o$ la tensión de salida y $A_v$ la ganancia en tensión, al aplicar la LCK en la entrada inversora se llega a que
 
@@ -46,6 +52,11 @@ Entonces \textbf{un amplificador inversor invierte la polaridad de entrada a la 
 \label{sec:intro:opamp-noinversor}
 
 % TODO: Agregar figuras
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \input{src/intro/opamp-noinversor.tikz}
+\end{wrapfigure}
 
 En este caso se aplica la tensión de entrada a la terminal no inversora, conectando $R_1$ entre masa y la terminal inversora. Dado que $v_{-} = v_{+} = v_i$, al aplicar la LCK en la terminal inversora se encuentra la relación entre la tensión de salida y la tensión de entrada, que es:
 

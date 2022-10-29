@@ -1,6 +1,7 @@
 .PHONY: clean
 DATA = data/1/mediciones-parsed.csv
 RMHEADERS = tail -n +2
+INTRO = src/intro.tex src/intro/opamp-inversor.tikz src/intro/opamp-noinversor.tikz
 ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
 PARTE1 = src/1/teoria.tex src/1/datos.tex presentacion-datos-1 $(ANALISIS1)
 
@@ -9,7 +10,7 @@ OCTAVE1 = $(OCTAVE) -p code/1
 
 all: $(DATA) main.pdf
 
-main.pdf: main.tex title.tex references.bib src/intro.tex src/metodos.tex $(PARTE1)
+main.pdf: main.tex title.tex references.bib $(INTRO) src/metodos.tex $(PARTE1)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex

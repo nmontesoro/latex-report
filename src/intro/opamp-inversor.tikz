@@ -1,0 +1,19 @@
+\begin{circuitikz}
+    \node[op amp] at (0, 0) (opamp) {};
+
+    \draw(opamp.-) -- ++(-0.7, 0) node[label={above:$v_-$}]{}
+    to[R=$R_1$] ++(-1.5, 0)
+    to[short, -o] ++(-0.2, 0) node[left]{$v_i$};
+
+    \draw(opamp.+) -- ++(-0.2, 0) node[label={left:$v_+$}]{}
+    to[short] ++(0, -0.5)
+    node[ground]{};
+
+    \draw(opamp.-) -- ++(-0.2, 0)
+    to[short, *-] ++(0, 1.5)
+    to[R=$R_2$] ++(2.8, 0) coordinate(co)
+    to[short] (opamp.out -| co) coordinate(co1) -- (opamp.out);
+
+    \draw(co1) 
+    to[short, *-o] ++(0.4, 0) node[right]{$v_o$};
+\end{circuitikz}
