@@ -1,7 +1,7 @@
 .PHONY: clean
 DATA = data/1/mediciones-parsed.csv
 RMHEADERS = tail -n +2
-ANALISIS1 = img/1/ganancia.tikz
+ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
 PARTE1 = src/1/teoria.tex src/1/datos.tex presentacion-datos-1 $(ANALISIS1)
 
 OCTAVE = octave -Wq -p code/shared
