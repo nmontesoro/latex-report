@@ -2,9 +2,19 @@
 
 Se arma el circuito de la fig. \ref{fig:1:esquema} en un \textit{protoboard}
 utilizando resistencias $R_1 = \SI{10}{\kilo\ohm}$, $R_2 = \SI{15}{\kilo\ohm}$ y
-$R_3 = \SI{10}{\kilo\ohm}$. Luego se miden las tensiones $V_i$, $V_o$, $V_{+}$,
-$V_{-}$ y $V_{+} - V_{-}$, y las corrientes que atraviesan a las resistencias
-para valores de $R_L$ de 1, 10 y \SI{47}{\kilo\ohm}. 
+$R_3 = \SI{10}{\kilo\ohm}$. Se hace uso de un integrado TL072 como amplificador
+operacional, y de una fuente partida de \SI{14}{\volt} como su fuente de 
+alimentación ($V_{cc}$). Luego se miden las tensiones $v_i$, $v_o$, $v_{+}$,
+$v_{-}$ y $\left(v_{+} - v_{-}\right)$, y se calculan las corrientes que
+atraviesan a todas las resistencias para valores de $R_L$ de 1, 10 y
+\SI{47}{\kilo\ohm}.
+
+\begin{figure}[H]
+    \centering
+    \input{src/1/esquematico.tikz}
+    \caption{Esquemático del circuito de la primera parte}
+    \label{fig:1:esquema}
+\end{figure}
 
 \input{src/1/teoria}
 
