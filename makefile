@@ -1,6 +1,7 @@
 .PHONY: clean
 DATA = data/1/mediciones-parsed.csv
 RMHEADERS = tail -n +2
+<<<<<<< HEAD
 INTRO = src/intro.tex src/intro/opamp-inversor.tikz src/intro/opamp-noinversor.tikz
 SIMULACION1 = src/1/simulacion.tex img/1/ltspice.png
 ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
