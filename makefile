@@ -10,10 +10,11 @@ C6 = src/cuestionario/6.tex src/cuestionario/6/longitud.tex src/cuestionario/6/p
 C7 = src/cuestionario/7.tex src/cuestionario/7/longitud.tex src/cuestionario/7/periodo.tex src/cuestionario/7/gravedad.tex
 C8 = src/cuestionario/8.tex img/gauss.tikz
 CUESTIONARIO = src/cuestionario.tex $(C1) $(C2) $(C3) $(C4) $(C5) $(C6) $(C7) $(C8)
+APENDICE = src/apendice.tex src/apendice/datos.tex
 
 all: main.pdf
 
-main.pdf: main.tex title.tex references.bib src/intro.tex src/procedimiento.tex $(CUESTIONARIO)
+main.pdf: main.tex title.tex references.bib src/intro.tex src/procedimiento.tex $(CUESTIONARIO) $(APENDICE)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
@@ -35,6 +36,9 @@ src/cuestionario/7/%.tex: code/gravedad-7.m code/gravedad.m
 
 img/gauss.tikz: code/fgaussian.m code/PlotGaussian.m
 	$(OCTAVE) code/PlotGaussian.m
+
+src/apendice/datos.tex: code/datos.m
+	$(OCTAVE) code/datos.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
