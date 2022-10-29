@@ -9,7 +9,7 @@ errorbar(R(:, 4), A, DA, ".");
 
 legend("Teórico", "Experimental", "location", "north");
 xlabel("$R_L$ (\\si{\\kilo\\ohm})");
-ylabel("A");
+ylabel("$A$");
 grid on;
 
 print -dtikz "-S900,600" "-F:5.5" "img/1/ganancia.tikz"
