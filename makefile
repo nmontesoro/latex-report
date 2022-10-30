@@ -6,12 +6,14 @@ SIMULACION1 = src/1/simulacion.tex img/1/ltspice.png
 ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
 PARTE1 = src/1/main.tex src/1/esquematico.tikz src/1/teoria.tex $(SIMULACION1) src/1/datos.tex presentacion-datos-1 $(ANALISIS1)
 
+PARTE2 = src/2/main.tex src/2/esquematico.tikz src/2/esquematico-seguidor.tikz
+
 OCTAVE = octave -Wq -p code/shared
 OCTAVE1 = $(OCTAVE) -p code/1
 
 all: $(DATA) main.pdf
 
-main.pdf: main.tex title.tex references.bib $(INTRO) src/metodos.tex $(PARTE1)
+main.pdf: main.tex title.tex references.bib $(INTRO) src/metodos.tex $(PARTE1) $(PARTE2)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex

@@ -1,0 +1,32 @@
+\section{Segunda parte: amplificador no inversor}
+
+Se arma el circuito de la fig. \ref{fig:2:esquema} en un \textit{protoboard}
+con $R_1 = \SI{10}{\kilo\ohm}$ y $R_2 = \SI{15}{\kilo\ohm}$, un TL072 como
+amplificador operacional y una fuente partida de $\SI{14}{\volt}$
+alimentándolo. Luego se utilizan distintos valores de resistencia $R_L$
+(47, 10 y \SI{1}{\kilo\ohm}) y se miden las tensiones $v_i$ y $v_o$ para
+calcular la ganancia del circuito.
+
+Hecho esto, se modifica el circuito para convertirlo en el seguidor de tensión
+de la fig. \ref{fig:2:esquema-seguidor} (ver sección
+\ref{sec:intro:opamp-noinversor}) y se vuelven a utilizar los
+mismos valores de $R_L$ para hallar los distintos puntos de trabajo.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \input{src/2/esquematico.tikz}
+        \caption{Amplificador no inversor}
+        \label{fig:2:esquema}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \input{src/2/esquematico-seguidor.tikz}
+        \caption{Amplificador seguidor de tensión}
+        \label{fig:2:esquema-seguidor}
+    \end{subfigure}
+    \caption{Circuitos a implementar}
+\end{figure}
+
