@@ -7,7 +7,7 @@ ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
 PARTE1 = src/1/main.tex src/1/esquematico.tikz src/1/teoria.tex $(SIMULACION1) src/1/datos.tex presentacion-datos-1 $(ANALISIS1)
 
 SIMULACION2 = src/2/simulacion.tex img/2/ltspice.png img/2/ltspice-seguidor.png
-PARTE2 = src/2/main.tex src/2/esquematico.tikz src/2/esquematico-seguidor.tikz $(SIMULACION2)
+PARTE2 = src/2/main.tex src/2/esquematico.tikz src/2/esquematico-seguidor.tikz src/2/teoria.tex $(SIMULACION2)
 
 OCTAVE = octave -Wq -p code/shared
 OCTAVE1 = $(OCTAVE) -p code/1
