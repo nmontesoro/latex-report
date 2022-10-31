@@ -4,7 +4,7 @@ RMHEADERS = tail -n +2
 INTRO = src/intro.tex src/intro/opamp-inversor.tikz src/intro/opamp-noinversor.tikz
 SIMULACION1 = src/1/simulacion.tex img/1/ltspice.png
 ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
-PARTE1 = src/1/main.tex src/1/esquematico.tikz src/1/teoria.tex $(SIMULACION1) src/1/datos.tex presentacion-datos-1 $(ANALISIS1)
+PARTE1 = src/1/main.tex src/1/esquematico.tikz src/1/teoria.tex $(SIMULACION1) src/1/datos.tex presentacion-datos-1 img/1/osciloscopio-1.jpg $(ANALISIS1)
 
 SIMULACION2 = src/2/simulacion.tex img/2/ltspice.png img/2/ltspice-seguidor.png img/2/recta-spice.tikz
 ANALISIS2 = src/2/analisis.tex img/2/ganancia.tikz img/2/ganancia-seguidor.tikz img/2/recta-carga.tikz
