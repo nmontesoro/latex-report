@@ -9,3 +9,4 @@
 *.toc
 data/1/mediciones-parsed.csv
 img/1/ganancia.tikz
+img/2/*.tikz
