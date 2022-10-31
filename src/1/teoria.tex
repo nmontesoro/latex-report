@@ -30,3 +30,14 @@ anterior resulta en:
 Como puede observarse, el valor de la ganancia no debería verse afectado por el
 resistor $R_3$. Esto se debe a la alta resistencia de entrada del operacional
 (que de hecho es infinita en este modelo ideal).
+
+Si bien el modelo ideal no admite que circule corriente entre masa y la
+terminal no inversora, debido a esta resistencia infinita, en la realidad
+el operacional tiene una ganancia \textit{finita}, pero muy grande (en torno a
+los $10^{12}$ \si{\ohm} en el caso del TL072 \cite[pág. 5]{datasheet-tl072}).
+Por este motivo se produce una corriente mínima, llamada corriente de
+polarización (\textit{input bias current}), que depende del dispositivo que se
+utilice y que provoca una caída de potencial entre los terminales de $R_3$.
+Para el TL072, esta corriente está entre 65 y \SI{200}{\pico\ampere} 
+\cite[pág. 5]{datasheet-tl072}. Es por esta razón que se aconseja no
+conectar la terminal no inversora directamente a masa \cite[pág. 252]{AOE}.
