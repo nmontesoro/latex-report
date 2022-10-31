@@ -14,7 +14,7 @@ OCTAVE1 = $(OCTAVE) -p code/1
 
 all: $(DATA) main.pdf
 
-main.pdf: main.tex title.tex references.bib src/resumen.tex $(INTRO) src/metodos.tex $(PARTE1) $(PARTE2)
+main.pdf: main.tex title.tex references.bib src/resumen.tex src/objetivos.tex $(INTRO) src/metodos.tex $(PARTE1) $(PARTE2)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
