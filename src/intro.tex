@@ -51,8 +51,6 @@ Por lo tanto se demuestra que \textbf{un amplificador inversor invierte la polar
 \subsection{Amplificador no inversor}
 \label{sec:intro:opamp-noinversor}
 
-% TODO: Agregar figuras
-
 \begin{wrapfigure}{r}{0.4\textwidth}
     \centering
     \input{src/intro/opamp-noinversor.tikz}
@@ -69,4 +67,6 @@ En este caso se aplica la tensión de entrada a la terminal no inversora, conect
 
 Como la ganancia es un número positivo, \textbf{un amplificador no inversor produce una señal de salida con la misma polaridad que la señal de entrada}.
 
-A su vez, si se diera el caso en que $R_2 = \SI{0}{\ohm}$ (cortocircuito) o $R_1 = \infty$ (circuito abierto), o ambos, se configura el circuito conocido como \textbf{seguidor de tensión} o \textbf{amplificador de ganancia unitaria}, dado que $v_o = v_i$. Tiene una impedancia de entrada muy alta, por lo que puede ser utilizado para aislar un circuito de otro \cite[pág. 184]{FDCE}.
+\subsubsection{Seguidor de tensión}
+
+Si se diera el caso en que $R_2 = \SI{0}{\ohm}$ (cortocircuito) o $R_1 = \infty$ (circuito abierto), o ambos, se configura el circuito conocido como \textbf{seguidor de tensión} o \textbf{amplificador de ganancia unitaria}, dado que $v_o = v_i$. Tiene una impedancia de entrada muy alta, por lo que puede ser utilizado para aislar un circuito de otro \cite[pág. 184]{FDCE} y por tal motivo también se lo suele denominar como \textbf{amplificador de aislamiento} \cite[pág. 109]{huelsman}.
