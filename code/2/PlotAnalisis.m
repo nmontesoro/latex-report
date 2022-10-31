@@ -46,3 +46,17 @@ ylabel("$A$");
 grid on;
 
 print -dtikz "-S900,600" "-F:5.5" "img/2/ganancia-seguidor.tikz"
+
+clf;
+V = [9.57, 9.57, 9.57];
+DV = [0.01 0.01 0.01];
+I = [205.4 612 963];
+errorbar(V, I, DV, ">.")
+line([9.57, 9.57], [0, 1000])
+xlim([9.5 10])
+xlabel("$v_o$ (\\si{\\volt})");
+ylabel("$I_{R_L}$ (\\si{\\micro\\ampere})");
+legend("Datos experimentales", "Recta de carga", "location", "east");
+grid on;
+
+print -dtikz "-S900,600" "-F:5.5" "img/2/recta-carga.tikz"
