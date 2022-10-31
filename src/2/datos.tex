@@ -14,3 +14,27 @@ y la salida registró $v_o = \SI{9.57 \pm 0.01}{\volt}$ para los tres valores
 utilizados de $R_L$. La ganancia entonces es 
 $A = \num{0.9979144943 \pm 0.002083331068}$.
 
+Con los datos anteriores y sabiendo que
+
+\[
+    I_{R_L} = \frac{v_o}{R_L} \quad\quad
+    \Delta I_{R_L} = \frac{\Delta v_o}{R_L} + 
+                     \left| \frac{-v_o}{{R_L}^2} \right| \Delta R_L 
+\]
+se calculan los valores de la tabla \ref{tab:2-datos:irl}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}r|rr@{}}
+        \toprule
+        $R_L$ (nominal, \si{\kilo\ohm}) & $R_L$ (medido, \si{\kilo\ohm}) & $I_{R_L}$
+            (\si{\micro\ampere}) \\
+        \midrule
+        47 & \num{46.6 \pm 0.1} & \num{205.4 \pm 0.7} \\
+        10 & \num{15.64 \pm 0.01} & \num{612 \pm 1} \\
+         1 & \num{9.94 \pm 0.01} & \num{963 \pm 2} \\ \bottomrule
+    \end{tabular}
+    \caption{Corrientes por las resistencias $R_L$ en el seguidor de tensión
+    ($v_i = \SI{9.57 \pm 0.01}{\volt}$)}
+    \label{tab:2-datos:irl}
+\end{table}
