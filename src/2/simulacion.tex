@@ -30,3 +30,18 @@ $\SI{1}{\kilo\ohm}$, respectivamente.
         \ref{fig:2:esquema-seguidor}}
     \label{fig:2:ltspice-seguidor}
 \end{figure}
+
+Finalmente, se tomó la simulación del seguidor de tensión y se reemplazó el
+valor de $R_L$ por \verb|{RL}|. A continuación, se utilizó la sentencia
+\verb|.step dec param RL 1 100k 100| junto con la instrucción \verb|.op| para
+encontrar el punto de operación del circuito para distintos valores de $R_L$
+entre \SI{1}{\ohm} y \SI{100}{\kilo\ohm}. Teniendo estos datos se traza la
+recta de carga del circuito, fig. \ref{fig:2:recta-spice}.
+
+\begin{figure}[H]
+    \centering
+    \input{img/2/recta-spice.tikz}
+    \caption{Recta de carga del seguidor de tensión, simulada con LTSpice
+    ($v_i = \SI{9.00}{\volt})$}
+    \label{fig:2:recta-spice}
+\end{figure}
