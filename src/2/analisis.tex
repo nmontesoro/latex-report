@@ -1,5 +1,12 @@
 \subsection{Análisis de datos}
 
+Los gráficos de las figs. \ref{fig:2-analisis:ganancia-opamp} y 
+\ref{fig:2-analisis:ganancia-seguidor} comparan los valores
+de ganancia calculados teóricamente con los encontrados por simulación, y con
+los valores calculados luego de tomar las mediciones. Se observa que los
+valores experimentales y de simulación caen dentro del margen de error
+esperado (descrito en la sección de cálculos teóricos).
+
 \begin{figure}[H]
     \centering
     \input{img/2/ganancia.tikz}
@@ -14,9 +21,25 @@
     \label{fig:2-analisis:ganancia-seguidor}
 \end{figure}
 
+Por otro lado, el gráfico de la fig. \ref{fig:2-analisis:recta-carga} muestra
+cómo quedaría la recta de carga del seguidor de tensión teniendo en cuenta
+los valores de tensión y resistencia medidos experimentalmente. Como puede
+verse, se trata de una recta cuya pendiente tiende a $\infty$, tal cual se
+obtuvo en la simulación con LTSpice. De haber usado valores de $R_L$ mucho
+menores, en torno a los $\SI{200}{\ohm}$, hubiera sido posible comprobar si
+el modelo de LTSpice es válido para tensiones de salida
+$v_o < \SI{9.5}{\volt}$ (si es que el seguidor de tensión sigue proveyendo
+un valor cercano a $v_i$ en la salida, o si efectivamente ocurre lo descrito
+en la fig. \ref{fig:2:recta-spice}).
+
 \begin{figure}[H]
     \centering
     \input{img/2/recta-carga.tikz}
     \caption{Recta de carga del seguidor de tensión}
     \label{fig:2-analisis:recta-carga}
 \end{figure}
+
+Debido al análisis realizado en los párrafos anteriores, es posible concluír
+que el modelo ideal del amplificador operacional presentado en la sección
+\ref{sec:intro} provee una aproximación muy cercana a la realidad, 
+especialmente cuando se trata de calcular ganancias.
