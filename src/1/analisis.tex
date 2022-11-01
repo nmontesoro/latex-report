@@ -8,6 +8,14 @@ observarse, todos los valores de ganancia medidos caen cómodamente dentro
 del margen de error previsto. Esto sugiere que las ecuaciones de ganancia
 que se utilizaron para la configuración inversora del amplificador operacional
 permiten obtener una buena aproximación al funcionamiento real del circuito.
+Sin embargo la ganancia calculada para $R_L = \SI{1}{\kilo\ohm}$ difiere mucho
+de los demás valores, cuando sería esperable que todos los valores estuvieran
+relativamente cerca entre sí ya que la ganancia del circuito no debería
+depender del valor de $R_L$. De todas formas, promediando los datos de la tabla
+\ref{tab:1-teoria:ganancia-experimental} y calculando la incertidumbre como
+$\sqrt{3}\,\sigma_{n-1}$ se obtiene una ganancia
+$A = \num{-1.3 \pm 0.3}$, que aún con un error de $23\%$ resulta ser 
+totalmente consistente con las estimaciones teóricas.
 
 \begin{figure}[H]
     \centering
