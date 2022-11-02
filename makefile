@@ -1,10 +1,11 @@
 .PHONY: clean
 
 RESUMEN = src/resumen.tex
+INTRODUCCION = src/introduccion.tex
 
 all: main.pdf
 
-main.pdf: main.tex title.tex references.bib $(RESUMEN)
+main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex

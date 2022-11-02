@@ -1,0 +1,28 @@
+\section{Introducción}
+
+El período $T$ de un péndulo físico está dado por la ecuación
+\ref{ec:intro:periodo}, donde $L$ es la longitud del péndulo y $g$ es la
+constante de la gravedad:
+
+\begin{equation}
+    \label{ec:intro:periodo}
+    T = 2\pi \sqrt{\frac{2L}{3g}}
+\end{equation}
+
+De la ecuación anterior puede despejarse $g$, de forma tal de poder calcular el
+valor de esta constante (y su incerteza) midiendo la longitud y el tiempo que
+tarda un péndulo en completar una oscilación:
+
+\begin{equation}
+    \label{ec:intro:gravedad}
+    g = \frac{8}{3} \pi^2 \frac{L}{T^2}
+\end{equation}
+
+\begin{equation}
+    \label{ec:intro:error-gravedad}
+    \Delta g = \frac{8}{3} \pi^2 \left( \frac{\Delta L}{T^2} +
+                                        \frac{2L \Delta T}{T^3}
+                                    \right)
+\end{equation}
+donde $\Delta L$ y $\Delta T$ son las incertidumbres en las mediciones de la
+longitud y el período del péndulo, respectivamente. 
