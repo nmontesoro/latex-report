@@ -18,7 +18,7 @@ main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION) $(PROCEDI
 img/periodos.tikz: $(COMMON) code/MakeBasePlot.m code/PlotPeriodos.m
 	$(OCTAVE) code/PlotPeriodos.m
 
-img/cuadrados.tikz: $(COMMON) code/MakeBasePlot.m code/PlotCuadrados.m
+img/cuadrados.tikz: $(COMMON) code/GetCuadradosFn.m code/MakeBasePlot.m code/PlotCuadrados.m
 	$(OCTAVE) code/PlotCuadrados.m
 
 clean:
