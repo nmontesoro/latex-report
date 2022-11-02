@@ -2,10 +2,11 @@
 
 RESUMEN = src/resumen.tex
 INTRODUCCION = src/introduccion.tex
+PROCEDIMIENTO = src/procedimiento.tex img/esquema-pendulo.tikz
 
 all: main.pdf
 
-main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION)
+main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION) $(PROCEDIMIENTO)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex

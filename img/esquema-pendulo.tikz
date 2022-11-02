@@ -1,0 +1,7 @@
+\begin{tikzpicture}
+    \draw[fill=brown] (0,0) rectangle (1, 0.2);
+    \draw[fill=brown] (0.4, 0.2) rectangle ++(0.2, 3);
+    \draw[fill=gray, rotate around={5:(0.5, 2.9)}] (0.45, 3) rectangle 
+    ++(0.1, -2.7);
+    \filldraw[black] (0.5, 2.9) circle (0.8pt);
+\end{tikzpicture}
