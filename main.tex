@@ -83,7 +83,9 @@ sorting=ynt
 \usepackage{siunitx}
 \sisetup{
     separate-uncertainty=true,
-    locale = DE
+    locale = DE,
+    round-mode = uncertainty,
+    round-precision = 1
 }
 
 % --- Para TODOs y comentarios
@@ -99,6 +101,10 @@ sorting=ynt
     \end{center}
 }
 
+% Graficos con gnuplot
+\usepackage{tikzscale}
+\usepackage{gnuplot-lua-tikz}
+
 \begin{document}
 
     \input{title}
@@ -110,6 +116,8 @@ sorting=ynt
     \input{src/introduccion}
 
     \input{src/procedimiento}
+
+    \input{src/datos}
     
     \newpage
     \section{Bibliografía}
