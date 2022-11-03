@@ -33,6 +33,28 @@ los datos como esta recta.
     \label{fig:datos:regresion}
 \end{figure}
 
+Teniendo la recta de la fig. \ref{fig:datos:regresion} se pueden construir los
+gráficos de las figs. \ref{fig:datos:residuos} y \ref{fig:datos:histograma}.
+A simple vista parecen cumplirse las condiciones de cuadrados mínimos 
+\cite[pág. 527]{estadistica}, que establecen que, dado un modelo lineal
+$y_i = A + Bx_i + \varepsilon_i$ con errores $\varepsilon_i$:
+
+\begin{itemize}
+    \item Los errores son aleatorios e independientes. La magnitud de 
+        cualquiera de ellos no influye en el valor del siguiente.
+    \item Todos los errores tienen media 0.
+    \item Todos los errores tienen la misma varianza.
+    \item Todos los errores están distribuidos normalmente.
+\end{itemize}
+
+Viendo la fig. \ref{fig:datos:residuos} parecería que la dispersión vertical
+del diagrama no varía demasiado, que el diagrama es homoscedástico, por ende
+es \textit{probable} que los supuestos del modelo lineal sean válidos
+\cite[págs. 527-528]{estadistica}. Además, en la fig.
+\ref{fig:datos:histograma} se observa claramente la distribución normal de 
+los errores, la última de las condiciones mencionadas antes.
+
+
 \begin{figure}[H]
     \centering
     \input{img/residuos.tikz}
