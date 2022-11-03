@@ -10,7 +10,7 @@ function [g, dg] = CalcG()
     coefs = CalcCoefsMC();
 
     B = coefs(1);
-    DB = coefs(3);
+    DB = coefs(6);
 
     a = 8 * pi^2 / 3;
 
