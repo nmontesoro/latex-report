@@ -1,0 +1,55 @@
+\section{Apéndice}
+\label{sec:apendice}
+
+\subsection{Fórmulas para el cálculo de estimadores en mínimos cuadrados}
+\label{sec:apendice:formulas-estimadores-mc}
+
+Sea $y_i = Bx_i + A$ una recta que ajusta una serie de $N$ datos mediante
+cuadrados mínimos. La pendiente $B$ y la ordenada al origen $A$ se calculan
+como:
+
+\newcommand{\denominador}{N \sum {x_i}^2 - \left( \sum x_i \right)^2} 
+
+\begin{equation}
+    \label{ec:apendice:pendiente-mc}
+    B = \frac{ N \sum x_i y_i - \sum x_i \sum y_i }
+             { \denominador }
+\end{equation}
+\vspace{5mm}
+\begin{equation}
+    \label{ec:apendice:ordenada-mc}
+    A = \frac{ \sum {x_i}^2 \sum y_i - \sum x_i \sum x_i y_i}
+             { \denominador }
+\end{equation}
+\vspace{5mm}
+
+A su vez, se puede calcular la desviación de $y_i$ como:
+
+\begin{equation}
+    \label{ec:apendice:desviacion-y-mc}
+    \sigma_{y_i} = \sqrt{ \frac{1}{N-2} \sum 
+                          \left( y_i - A - B x_i \right)^2 }
+\end{equation}
+
+\vspace{5mm}
+La desviación de la pendiente y de la ordenada pueden calcularse como:
+
+\begin{equation}
+    \label{ec:apendice:desviacion-pendiente-mc}
+    \sigma_B = \sigma_{y_i} \sqrt { \frac{N}{\denominador} }
+\end{equation}
+
+\vspace{5mm}
+\begin{equation}
+    \label{ec:apendice:desviacion-ordenada-mc}
+    \sigma_A = \sigma_{y_i} \sqrt { \frac{ \sum {x_i}^2 }{ \denominador } }
+\end{equation}
+
+\vspace{5mm}
+Finalmente se puede calcular el error en la pendiente y en la ordenada como:
+
+\begin{equation}
+    \label{ec:apendice:errores-mc}
+    \Delta B = \frac{3\,\sigma_B}{\sqrt{N}}, \quad\quad
+    \Delta A = \frac{3\,\sigma_A}{\sqrt{N}}
+\end{equation}

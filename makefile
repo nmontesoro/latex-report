@@ -7,10 +7,11 @@ RESUMEN = src/resumen.tex
 INTRODUCCION = src/introduccion.tex
 PROCEDIMIENTO = src/procedimiento.tex img/esquema-pendulo.tikz
 DATOS = src/datos.tex img/periodos.tikz img/cuadrados.tikz img/residuos.tikz img/histograma.tikz src/datos/datos-mc.tex src/datos/gravedad.tex
+APENDICE = src/apendice.tex
 
 all: main.pdf
 
-main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION) $(PROCEDIMIENTO) $(DATOS)
+main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION) $(PROCEDIMIENTO) $(DATOS) $(APENDICE)
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
