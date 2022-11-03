@@ -29,6 +29,32 @@ habiendo calculado los siguientes valores (ver apéndice, sección
     \input{src/datos/datos-mc}
 \end{itemize}
 
+\comment{Lo siguiente podría ir en alguna otra sección. Tal vez en
+    ``Discusión''?}
+
+Al aplicar $\lim_{N\to\infty}$ a las fórmulas de la sección
+\ref{sec:apendice:formulas-estimadores-mc} se determina que la ordenada al
+origen $A$ y las desviaciones $\sigma_{y_i}$, $\sigma_B$ y $\sigma_A$ tenderán
+a cero conforme se aumenta la cantidad de mediciones (y, por consiguiente,
+también ocurrirá lo mismo con los errores $\Delta B$ y $\Delta A$). Por otro
+lado, el valor de la pendiente convergerá a
+
+\[
+    B = \frac{ \sum{x_i y_i} }{ \sum {x_i}^2 }
+\]
+
+Es decir: al aumentar la cantidad de puntos que se miden, las desviaciones se
+anulan y la pendiente debería converger al valor teórico dado por la ec.
+\ref{ec:intro:gravedad}, si el modelo es adecuado:
+
+\[
+    B = 2\pi \sqrt{\frac{2}{3g}}
+\]
+
+Por lo anterior es lógico esperar que el valor de $g$ también tienda a su valor
+verdadero.
+
+\comment{Hasta acá.}
 
 \begin{figure}[H]
     \centering
