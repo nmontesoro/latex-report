@@ -1,0 +1,13 @@
+coefs = CalcCoefsMC();
+
+file = fopen("src/datos/pendiente.tex", "wt");
+fprintf(file, ...
+        "$B = \\qty[per-mode = symbol]{%f \\pm %f}{\\second\\per\\cm\\tothe{1/2}}$", ...
+        coefs(1), 3 * coefs(3));
+fclose(file);
+
+file = fopen("src/datos/ordenada.tex", "wt");
+fprintf(file, ...
+        "$A = \\qty[per-mode = symbol]{%f \\pm %f}{\\second}$", ...
+        coefs(2), 3 * coefs(4));
+fclose(file);

@@ -15,6 +15,17 @@ la fig. \ref{fig:datos:periodos}.
     \label{fig:datos:periodos}
 \end{figure}
 
+Se decide utilizar un gráfico $T$ vs. $\sqrt{L}$ por las razones que se 
+exponen en el apéndice de este trabajo. Mediante mínimos cuadrados se encuentra
+que la recta que mejor se adapta a los datos experimentales es
+
+\[
+    y_i = Bx_i + A, \quad\quad x_i = \sqrt{L_i}, \quad y_i = T_i
+\]
+donde la pendiente es \input{src/datos/pendiente} y la ordenada
+\input{src/datos/ordenada}. La fig. \ref{fig:datos:regresion} ilustra tanto
+los datos como esta recta.
+
 \begin{figure}[H]
     \centering
     \input{img/cuadrados.tikz}
