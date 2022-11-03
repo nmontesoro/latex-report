@@ -15,17 +15,17 @@ main.pdf: main.tex title.tex references.bib $(RESUMEN) $(INTRODUCCION) $(PROCEDI
 	biber main
 	pdflatex main.tex
 
-img/periodos.tikz: $(COMMON) code/MakeBasePlot.m code/PlotPeriodos.m
-	$(OCTAVE) code/PlotPeriodos.m
+img/periodos.tikz: $(COMMON) code/PlotPeriodos.m code/GenPlotPeriodos.m
+	$(OCTAVE) code/GenPlotPeriodos.m
 
-img/cuadrados.tikz: $(COMMON) code/GetCuadradosFn.m code/MakeBasePlot.m code/PlotCuadrados.m
-	$(OCTAVE) code/PlotCuadrados.m
+img/cuadrados.tikz: $(COMMON) code/GenPlotMC.m code/PlotMC.m code/CalcCoefsMC.m code/PlotPeriodos.m
+	$(OCTAVE) code/GenPlotMC.m
 
-img/residuos.tikz: $(COMMON) code/GetResiduos.m code/PlotResiduos.m
-	$(OCTAVE) code/PlotResiduos.m
+img/residuos.tikz: $(COMMON) code/CalcResiduos.m code/PlotResiduos.m code/GenPlotResiduos.m
+	$(OCTAVE) code/GenPlotResiduos.m
 
-img/histograma.tikz: $(COMMON) code/GetResiduos.m code/PlotHistogramaResiduos.m
-	$(OCTAVE) code/PlotHistogramaResiduos.m
+img/histograma.tikz: $(COMMON) code/CalcResiduos.m code/PlotHistograma.m code/GenPlotHistograma.m
+	$(OCTAVE) code/GenPlotHistograma.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
