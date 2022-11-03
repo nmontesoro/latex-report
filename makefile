@@ -6,7 +6,7 @@ COMMON = data/mediciones.csv code/GetData.m code/MyPrint.m
 RESUMEN = src/resumen.tex
 INTRODUCCION = src/introduccion.tex
 PROCEDIMIENTO = src/procedimiento.tex img/esquema-pendulo.tikz
-DATOS = src/datos.tex img/periodos.tikz img/cuadrados.tikz img/residuos.tikz img/histograma.tikz src/datos/pendiente.tex src/datos/ordenada.tex
+DATOS = src/datos.tex img/periodos.tikz img/cuadrados.tikz img/residuos.tikz img/histograma.tikz src/datos/pendiente.tex src/datos/ordenada.tex src/datos/gravedad.tex
 
 all: main.pdf
 
@@ -32,6 +32,9 @@ src/datos/pendiente.tex: $(COMMON) code/GenSnippetsMC.m code/CalcCoefsMC.m
 
 src/datos/ordenada.tex: $(COMMON) code/GenSnippetsMC.m code/CalcCoefsMC.m
 	$(OCTAVE) code/GenSnippetsMC.m
+
+src/datos/gravedad.tex: $(COMMON) code/CalcG.m code/CalcCoefsMC.m code/GenSnippetGravedad.m
+	$(OCTAVE) code/GenSnippetGravedad.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
