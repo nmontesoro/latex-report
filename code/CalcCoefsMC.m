@@ -5,7 +5,7 @@ function coefs = CalcCoefsMC()
     % Params: nada
     %
     % Returns:
-    %   coefs: vector de coeficientes [B, A, oB, oA, oY]
+    %   coefs: vector de coeficientes [B, A, oB, oA, oY, dB, dA, dY]
 
     [data, n, m] = GetData(true);
     
@@ -24,6 +24,9 @@ function coefs = CalcCoefsMC()
     oY = sqrt(sum((Y .- A .- B.*X) .^ 2) / (N - 2));
     oB = oY * sqrt(N / denom);
     oA = oY * sqrt(sumx2 / denom);
+    dB = 3 * oB / sqrt(N);
+    dA = 3 * oA / sqrt(N);
+    dY = 3 * oY / sqrt(N);
 
-    coefs = [B, A, oB, oA, oY];
+    coefs = [B, A, oB, oA, oY, dB, dA, dY];
 end
