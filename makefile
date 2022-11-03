@@ -6,7 +6,7 @@ COMMON = data/mediciones.csv code/GetData.m code/MyPrint.m
 RESUMEN = src/resumen.tex
 INTRODUCCION = src/introduccion.tex
 PROCEDIMIENTO = src/procedimiento.tex img/esquema-pendulo.tikz
-DATOS = src/datos.tex img/periodos.tikz img/cuadrados.tikz img/residuos.tikz img/histograma.tikz src/datos/pendiente.tex src/datos/ordenada.tex src/datos/gravedad.tex
+DATOS = src/datos.tex img/periodos.tikz img/cuadrados.tikz img/residuos.tikz img/histograma.tikz src/datos/datos-mc.tex src/datos/gravedad.tex
 
 all: main.pdf
 
@@ -27,10 +27,7 @@ img/residuos.tikz: $(COMMON) code/CalcResiduos.m code/PlotResiduos.m code/GenPlo
 img/histograma.tikz: $(COMMON) code/CalcResiduos.m code/PlotHistograma.m code/GenPlotHistograma.m
 	$(OCTAVE) code/GenPlotHistograma.m
 
-src/datos/pendiente.tex: $(COMMON) code/GenSnippetsMC.m code/CalcCoefsMC.m
-	$(OCTAVE) code/GenSnippetsMC.m
-
-src/datos/ordenada.tex: $(COMMON) code/GenSnippetsMC.m code/CalcCoefsMC.m
+src/datos/datos-mc.tex: $(COMMON) code/GenSnippetsMC.m code/CalcCoefsMC.m
 	$(OCTAVE) code/GenSnippetsMC.m
 
 src/datos/gravedad.tex: $(COMMON) code/CalcG.m code/CalcCoefsMC.m code/GenSnippetGravedad.m
