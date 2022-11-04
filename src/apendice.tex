@@ -1,8 +1,6 @@
 \section{Apéndice}
 \label{sec:apendice}
 
-\TODO{Agregar explicación de por qué usamos $T$ vs. $\sqrt{L}$}
-
 \subsection{Datos obtenidos del experimento}
 
 \begin{table}[H]
@@ -12,6 +10,47 @@
         \input{src/apendice/datos}
     \end{tabular}
 \end{table}
+
+\subsection{Justificación del uso de $T$ vs. $\sqrt{L}$}
+\label{sec:apendice:justificacion}
+
+Se parte de la ecuación \ref{ec:intro:gravedad} y se despeja
+
+\[
+    g = \frac{8}{3}\pi^2 \frac{x}{y^2}
+\]
+donde se pueden dar las siguientes situaciones:
+
+\begin{multicols}{3}
+\begin{itemize}
+    \item $x = L$ e $y = T$
+    \item $x = \sqrt{L}$ e $y = T$
+    \item $x = L$ e $y = T^2$
+\end{itemize}
+\end{multicols}
+
+Al propagar el error de $g$ se obtiene:
+
+\[
+    \Delta g = \frac{8}{3}\pi^2 \left(
+        \frac{\Delta x}{y^2} + 
+        \frac{2x\Delta y}{y^3}
+    \right)
+\]
+
+Por lo tanto $\Delta g$ depende directamente de los errores de $L$ y $T$.
+Propagando los errores de $\sqrt{L}$ y $T^2$ se obtiene
+
+\[
+    \Delta \left(\sqrt{L}\right) = \frac{\Delta L}{2\sqrt{L}},
+    \quad\quad
+    \Delta \left( T^2 \right) = 2T\Delta T
+\]
+
+Lo que implica que el error de $\sqrt{L}$ es menor que $\Delta L$, y que 
+el error de $T^2$ es mayor que $\Delta T$. Por lo tanto la mejor forma de 
+disminuir el error en $g$ al utilizar mínimos cuadrados es usar un gráfico
+$T$ vs. $\sqrt{L}$. 
 
 \subsection{Fórmulas para el cálculo de estimadores en mínimos cuadrados}
 \label{sec:apendice:formulas-estimadores-mc}
