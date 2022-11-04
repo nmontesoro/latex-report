@@ -7,7 +7,7 @@ RESUMEN = src/resumen.tex
 INTRODUCCION = src/introduccion.tex
 PROCEDIMIENTO = src/procedimiento.tex img/esquema-pendulo.tikz
 DATOS = src/datos.tex img/periodos.tikz img/cuadrados.tikz img/residuos.tikz img/histograma.tikz src/datos/datos-mc.tex src/datos/gravedad.tex
-APENDICE = src/apendice.tex
+APENDICE = src/apendice.tex src/apendice/datos.tex
 
 all: main.pdf
 
@@ -33,6 +33,9 @@ src/datos/datos-mc.tex: $(COMMON) code/GenSnippetsMC.m code/CalcCoefsMC.m
 
 src/datos/gravedad.tex: $(COMMON) code/CalcG.m code/CalcCoefsMC.m code/GenSnippetGravedad.m
 	$(OCTAVE) code/GenSnippetGravedad.m
+
+src/apendice/datos.tex: $(COMMON) code/GenTableDatos.m
+	$(OCTAVE) code/GenTableDatos.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out
