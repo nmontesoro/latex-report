@@ -25,7 +25,7 @@ h = errorbar(X, Y, DX, DY, "~>.");
 set(h, "color", [141 153 174] ./ 255);
 fplot(f, [0, 30], "color", [239 35 60] ./ 255);
 
-legend("Región", "Datos", "Recta");
+legend("Región de rectas de ajuste posibles", "Datos", "Recta de ajuste");
 grid on;
 
 xlabel("$L$ (\\si{\\cm})");

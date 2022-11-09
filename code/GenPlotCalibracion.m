@@ -29,7 +29,8 @@ h = errorbar(X, Y, DX, DY, "~>.");
 set(h, "color", [141 153 174] ./ 255);
 fplot(f, [0, 250], "color", [239 35 60] ./ 255);
 
-legend("Región", "Datos", "Recta", "location", "southeast");
+legend("Región de rectas de ajuste posibles", "Datos", "Recta de ajuste", ...
+    "location", "southeast");
 grid on;
 
 xlabel("$C$ (\\si{\\pico\\farad})");
