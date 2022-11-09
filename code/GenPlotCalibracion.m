@@ -33,6 +33,6 @@ legend("Región", "Datos", "Recta", "location", "southeast");
 grid on;
 
 xlabel("$C$ (\\si{\\pico\\farad})");
-ylabel("$f^{-1}$ (\\si{\\per\\hertz})");
+ylabel("$f^{-1}$ (\\si{\\per\\kilo\\hertz})");
 
 MyPrint("img/calibracion.tikz");
