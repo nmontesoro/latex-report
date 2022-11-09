@@ -17,12 +17,13 @@ f2 = @(X) (m-dm) .* X .+ (b-db);
 
 x = [0 30 30 0];
 y = [f2(0) f2(30) f1(30) f1(0)];
-fill(x, y, 'cyan', "FaceAlpha", 0.3);
+fill(x, y, [237 242 244] ./ 255, "LineWidth", 0.001);
 hold on;
 
 f = @(X) m .* X .+ b;
-errorbar(X, Y, DX, DY, "~>.");
-fplot(f, [0, 30]);
+h = errorbar(X, Y, DX, DY, "~>.");
+set(h, "color", [141 153 174] ./ 255);
+fplot(f, [0, 30], "color", [239 35 60] ./ 255);
 
 legend("Región", "Datos", "Recta");
 grid on;

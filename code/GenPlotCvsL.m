@@ -5,7 +5,8 @@ DX = data(:, 2);
 Y = data(:, 7);
 DY = data(:, 8);
 
-errorbar(X, Y, DX, DY, "~>.");
+h = errorbar(X, Y, DX, DY, "~>.");
+set(h, "color", [239 35 60] ./ 255);
 grid on;
 xlabel("$L$ (\\si{\\cm})");
 ylabel("$C$ (\\si{\\pico\\farad})");

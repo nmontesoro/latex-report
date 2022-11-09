@@ -21,14 +21,15 @@ f2 = @(X) (m-dm) .* X .+ (b-db);
 
 x = [0 250 250 0];
 y = [f2(0) f2(250) f1(250) f1(0)];
-fill(x, y, 'cyan', "FaceAlpha", 0.3);
+fill(x, y, [237 242 244] ./ 255, "LineWidth", 0.001);
 hold on;
 
 f = @(X) m .* X .+ b;
-errorbar(X, Y, DX, DY, "~>.");
-fplot(f, [0, 250]);
+h = errorbar(X, Y, DX, DY, "~>.");
+set(h, "color", [141 153 174] ./ 255);
+fplot(f, [0, 250], "color", [239 35 60] ./ 255);
 
-legend("Región", "Datos", "Recta");
+legend("Región", "Datos", "Recta", "location", "southeast");
 grid on;
 
 xlabel("$C$ (\\si{\\pico\\farad})");
