@@ -83,7 +83,10 @@ sorting=ynt
 \usepackage{siunitx}
 \sisetup{
     separate-uncertainty=true,
-    locale = DE
+    locale = DE,
+    round-mode=uncertainty,
+    round-precision=1,
+    sticky-per = true
 }
 
 % --- Para TODOs y comentarios
@@ -99,10 +102,14 @@ sorting=ynt
     \end{center}
 }
 
+\usepackage{csvsimple}
+
 \begin{document}
 
     \input{title}
     \tableofcontents
+
+    \input{src/resolucion}
     
     \newpage
     \section{Bibliografía}
