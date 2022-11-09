@@ -1,0 +1,40 @@
+\subsection{Mediciones del capacitor cilíndrico}
+
+Se obtuvieron los datos de la tabla \ref{tab:capacitor:datos}, con los que se 
+puede hallar la recta de mejor ajuste utilizando el mismo método de la sección
+anterior. En este caso, $f^{-1} = mL + b$, siendo
+\csvreader[no head]{data/calculos-2.csv}{}{
+    $m = \SI{\csvcolvi \pm \csvcolviii}{\per\cm\kilo\hertz}$ y
+    $b = \SI{\csvcolvii \pm \csvcolix}{\per\kilo\hertz}$.
+} Tanto los datos como la recta de mejor ajuste se encuentran en el gráfico de la
+fig. \ref{fig:capacitor:rectas}.
+
+Los diámetros exterior e interior de los cilindros fueron 
+\csvreader[no head]{data/calculos-3.csv}{}{
+    $d_e = \SI{\csvcolv \pm \csvcolvi}{\mm}$ y
+    $d_i = \SI{\csvcoli \pm \csvcolii}{\mm}$} respectivamente,
+con lo que los radios son 
+\csvreader[no head]{data/calculos-3.csv}{}{
+    $r_e = \SI{\csvcolvii \pm \csvcolviii}{\mm}$ y
+    $r_i = \SI{\csvcoliii \pm \csvcoliv}{\mm}$}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        no head,
+        tabular = rr,
+        table head = \toprule $L$ (\si{\cm}) & $f$ (\si{\kilo\hertz}) \\\midrule,
+        table foot = \bottomrule,
+    ]{data/longitudes.csv}{}{
+        \num{\csvcoli \pm \csvcolii} & \num{\csvcoliii \pm \csvcoliv}
+    }
+    \caption{Datos obtenidos}
+    \label{tab:capacitor:datos}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \input{img/capacitor.tikz}
+    \caption{Datos y recta de mejor ajuste}
+    \label{fig:capacitor:rectas}
+\end{figure}
