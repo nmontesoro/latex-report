@@ -21,6 +21,7 @@ inciso anterior, y los parámetros $\alpha$ y $C_o$ de la sección
              + \Delta B, \quad\quad
 \end{equation}
 
+\vspace{10mm}
 Con lo anterior se puede generar la gráfica de la fig. 
 \ref{fig:epsilon:cvsl}.
 
@@ -31,6 +32,7 @@ Con lo anterior se puede generar la gráfica de la fig.
     \label{fig:epsilon:cvsl}
 \end{figure}
 
+\vspace{10mm}
 Según la teoría esta última gráfica debería responder a la ecuación 
 \ref{ec:epsilon:teoria}:
 
@@ -39,6 +41,7 @@ Según la teoría esta última gráfica debería responder a la ecuación
     C = \frac{2\pi\varepsilon}{\ln\left(\frac{r_e}{r_i}\right)} L
 \end{equation}
 
+\vspace{5mm}
 Con lo cual deberían cumplirse las siguientes condiciones en nuestro modelo
 lineal:
 
@@ -47,13 +50,14 @@ lineal:
     \quad\quad B = 0
 \]
 
+\vspace{5mm}
 Como se cuenta con el valor de $M$ se puede despejar $\varepsilon$, quedando
 
 \begin{equation}
     \label{ec:epsilon:epsilon}
     \varepsilon = \frac{M}{2\pi} \ln \left(\frac{r_e}{r_i}\right)
 \end{equation}
-
+\vspace{5mm}
 \begin{equation}
     \label{ec:epsilon:error-epsilon}
     \Delta \varepsilon = \frac{1}{2\pi} \left[ 
@@ -63,6 +67,7 @@ Como se cuenta con el valor de $M$ se puede despejar $\varepsilon$, quedando
         \right]
 \end{equation}
 
+\vspace{5mm}
 Con las ecuaciones anteriores se llega a que \csvreader[no head]{data/calculos-3.csv}{}{
     $\varepsilon = \SI[exponent-mode = scientific]{\csvcolix \pm \csvcolx}{\farad\per\meter}$}, que
 aún teniendo una incertidumbre relativa muy grande no es consistente con el

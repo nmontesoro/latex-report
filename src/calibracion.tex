@@ -10,21 +10,24 @@ La capacidad total de un arreglo de capacitores en serie está dada por la ec.
 \ref{ec:calibracion:paralelo}, y el error en esta expresión se calcula con la
 ec. \ref{ec:calibracion:error-paralelo}:
 
+\vspace{10mm}
 \begin{equation}
     \label{ec:calibracion:paralelo}
     C = \frac{1}{\frac{1}{C_1} + \frac{1}{C_2}}
 \end{equation}
-
+\vspace{10mm}
 \begin{equation}
     \label{ec:calibracion:error-paralelo}
     \Delta C =
     \frac{1}{{C_1}^2 \left( \frac{1}{C_1} + \frac{1}{C_2} \right)^2} \, \Delta C_1 + 
     \frac{1}{{C_2}^2 \left( \frac{1}{C_1} + \frac{1}{C_2} \right)^2} \, \Delta C_2
 \end{equation}
+\vspace{10mm}
 
 Se utilizaron 6 configuraciones distintas. Los resultados de las mediciones se
 encuentran en la tabla \ref{tab:calibracion:datos}.
 
+\vspace{10mm}
 \begin{table}[H]
     \centering
     \csvreader[
@@ -38,6 +41,7 @@ encuentran en la tabla \ref{tab:calibracion:datos}.
     \caption{Resultados de mediciones para curva de calibración}
     \label{tab:calibracion:datos}
 \end{table}
+\vspace{10mm}
 
 Con los datos de la tabla \ref{tab:calibracion:datos} se consigue el gráfico
 de la fig. \ref{fig:calibracion:rectas}, en el cual se superpone la recta
@@ -61,24 +65,28 @@ Despejando la ecuación de transformación en frecuencias
 (\ref{ec:calibracion:transformacion}) se obtiene una expresión compatible con
 la forma de una recta, ec. \ref{ec:calibracion:transformacion-recta}:
 
+\vspace{10mm}
 \begin{equation}
     \label{ec:calibracion:transformacion}
     f = \frac{\alpha}{C + C_o}
 \end{equation}
-
+\vspace{10mm}
 \begin{equation}
     \label{ec:calibracion:transformacion-recta}
     \frac{1}{f} = \frac{1}{\alpha} C + \frac{C_o}{\alpha}
 \end{equation}
+\vspace{10mm}
 
 Con la ecuación \ref{ec:calibracion:transformacion-recta} se puede plantear que
 
+\vspace{5mm}
 \[
     \alpha = m^{-1} \pm \left| -m^{-2} \right| \Delta m,
     \quad\quad
     C_o = bm^{-1} \pm \left( \left| m^{-1} \right| \Delta b +
         \left| -bm^{-2} \right| \Delta m \right)
 \]
+\vspace{5mm}
 
 Con lo que se consiguen los valores de \csvreader[no head]{data/calculos-1.csv}{}{
     $\alpha = \SI{\csvcolx \pm \csvcolxi}{\per\pico\farad\kilo\hertz}$ y 
