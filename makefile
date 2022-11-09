@@ -3,7 +3,7 @@
 OCTAVE = octave -p code --gui
 DATOS-CALIBRACION = data/calibracion.csv data/calculos-1.csv
 DATOS-CAPACITOR = data/longitudes.csv data/calculos-2.csv
-RESOLUCION = src/resolucion.tex $(DATOS-CALIBRACION) src/calibracion.tex img/calibracion.tikz $(DATOS-CAPACITOR) src/capacitor.tex img/capacitor.tikz data/calculos-3.csv
+RESOLUCION = src/resolucion.tex $(DATOS-CALIBRACION) src/calibracion.tex img/calibracion.tikz $(DATOS-CAPACITOR) src/capacitor.tex img/capacitor.tikz data/calculos-3.csv src/epsilon.tex img/cvsl.tikz
 
 all: main.pdf
 
@@ -17,6 +17,9 @@ img/calibracion.tikz: $(DATOS-CALIBRACION) code/GenPlotCalibracion.m
 
 img/capacitor.tikz: $(DATOS-CAPACITOR) code/GenPlotCapacitor.m
 	$(OCTAVE) code/GenPlotCapacitor.m
+
+img/cvsl.tikz: data/longitudes.csv code/GenPlotCvsL.m
+	$(OCTAVE) code/GenPlotCvsL.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out img/*.tikz

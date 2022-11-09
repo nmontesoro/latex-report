@@ -1,0 +1,70 @@
+\subsection{Cálculo de $\varepsilon$}
+
+A partir de la recta de ajuste de calibración ($f^{-1}$ vs. $C$) y la recta de
+ajuste de la sección anterior ($f^{-1}$ vs. $L$) se obtienen las ecuaciones
+\ref{ec:epsilon:c} y \ref{ec:epsilon:error-c}, que relacionan la capacidad $C$
+del capacitor cilíndrico con su longitud $L$, los valores de $m$ y $b$ del
+inciso anterior, y los parámetros $\alpha$ y $C_o$ de la sección
+\ref{sec:calibracion}.
+
+\begin{equation}
+    \label{ec:epsilon:c}
+    C = \alpha \left( mL + b_2 \right) - C_o
+\end{equation}
+
+\begin{equation}
+    \label{ec:epsilon:error-c}
+    \Delta C = \left| Lm + b \right| \Delta \alpha
+             + \left| \alpha L \right| \Delta m
+             + \left| \alpha m \right| \Delta L
+             + \left| \alpha \right| \Delta b
+             + \Delta C_o
+\end{equation}
+
+Con lo anterior se puede generar la gráfica de la fig. 
+\ref{fig:epsilon:cvsl}.
+
+\begin{figure}[H]
+    \centering
+    \input{img/cvsl.tikz}
+    \caption{Capacidad del capacitor cilíndrico según su longitud}
+    \label{fig:epsilon:cvsl}
+\end{figure}
+
+Según la teoría esta última gráfica debería responder a la ecuación 
+\ref{ec:epsilon:teoria}:
+
+\begin{equation}
+    \label{ec:epsilon:teoria}
+    C = \frac{2\pi\varepsilon}{\ln\left(\frac{r_e}{r_i}\right)} L
+\end{equation}
+
+Con lo cual deberían cumplirse las siguientes condiciones en nuestro modelo
+lineal:
+
+\[
+    M = \frac{2\pi\varepsilon}{\ln\left(\frac{r_e}{r_i}\right)}, 
+    \quad\quad B = 0
+\]
+
+Como se cuenta con el valor de $M$ se puede despejar $\varepsilon$, quedando
+
+\begin{equation}
+    \label{ec:epsilon:epsilon}
+    \varepsilon = \frac{M}{2\pi} \ln \left(\frac{r_e}{r_i}\right)
+\end{equation}
+
+\begin{equation}
+    \label{ec:epsilon:error-epsilon}
+    \Delta \varepsilon = \frac{1}{2\pi} \left[ 
+            \left| \ln\left(\frac{r_e}{r_i}\right) \right| \Delta M +
+            \left| \frac{M}{r_e} \right| \Delta r_i + 
+            \left| \frac{-M}{r_i} \right| \Delta r_e
+        \right]
+\end{equation}
+
+Con las ecuaciones anteriores se llega a que \csvreader[no head]{data/calculos-3.csv}{}{
+    $\varepsilon = \SI[exponent-mode = scientific]{\csvcolix \pm \csvcolx}{\farad\per\meter}$}, que
+aún teniendo una incertidumbre relativa muy grande no es consistente con el
+valor aceptado de $\varepsilon = \SI{8.85e-12}{\farad\per\meter}$.
+
