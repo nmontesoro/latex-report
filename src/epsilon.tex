@@ -5,7 +5,8 @@ ajuste de la sección anterior ($f^{-1}$ vs. $L$) se obtienen las ecuaciones
 \ref{ec:epsilon:c} y \ref{ec:epsilon:error-c}, que relacionan la capacidad $C$
 del capacitor cilíndrico con su longitud $L$, los valores de $m$ y $b$ del
 inciso anterior, y los parámetros $\alpha$ y $C_o$ de la sección
-\ref{sec:calibracion}. Con esto se puede construir el gráfico de la fig.
+\ref{sec:calibracion}. Con esto se calculan los valores de la tabla
+\ref{tab:epsilon:cvsl} y se puede construir el gráfico de la fig.
 \ref{fig:epsilon:cvsl}.
 
 \begin{equation}
@@ -21,6 +22,21 @@ inciso anterior, y los parámetros $\alpha$ y $C_o$ de la sección
              + \left| L \right| \Delta M
              + \Delta B, \quad\quad
 \end{equation}
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        no head,
+        tabular = rr,
+        table head = \toprule $L$ (\si{\cm}) & $C$ (\si{\pico\farad}) \\\midrule,
+        table foot = \bottomrule,
+    ]{data/longitudes.csv}{}{
+        \num{\csvcoli \pm \csvcolii} & \num{\csvcolvii \pm \csvcolviii}
+    }
+    \caption{Valores de capacidad según longitud del capacitor, calculados
+        mediante recta de calibración.}
+    \label{tab:epsilon:cvsl}
+\end{table}
 
 \begin{figure}[H]
     \centering
