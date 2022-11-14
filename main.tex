@@ -12,6 +12,8 @@
 \usepackage{float} % Mejor soporte de float para figuras
 \usepackage{cancel} % Permite cancelar términos
 
+\usepackage{amssymb}
+
 % --- Para listar código
 \usepackage{listings} 
 \usepackage{xcolor}
@@ -103,7 +105,9 @@ sorting=ynt
 
     \input{title}
     \tableofcontents
-    
+
+    \input{src/resolucion}
+
     \newpage
     \section{Bibliografía}
     \printbibliography[heading=none]

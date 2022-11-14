@@ -1,0 +1,31 @@
+\question{
+    Encuentre los valores de $a$, $b$ y $c$ de la ecuación.
+}
+
+\answer{
+    
+    Se despeja la ecuación original como sigue. Luego se plantea el sistema de 
+    ecuaciones de la ecuación \ref{ec:1:sistema} observando ambos lados de la
+    igualdad. Resolviendo este sistema se obtienen los valores buscados.
+
+    \begin{align*}
+        MT^{-1} &= K\, \left(MT^{-3}\right)^a 
+                \, \left(LT^{-2}\right)^b
+                \, \left(L\right)^c \\
+                &= K \, M^{a} \, L^{-3a + b + c} \, T^{-2b}
+    \end{align*}
+
+    \begin{equation}
+        \label{ec:1:sistema}
+        \begin{cases}
+            a = 1 \\
+            -3a + b + c = 0 \\
+            -2b = -1
+        \end{cases}
+    \end{equation}
+
+    \vspace{5mm}
+    \begin{equation*}
+        \therefore \ a = 1, \ b = \frac{1}{2},\ c = \frac{5}{2}
+    \end{equation*}
+}
