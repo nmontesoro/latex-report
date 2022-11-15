@@ -1,0 +1,75 @@
+\section{Datos obtenidos}
+
+Para obtener la densidad $\delta$ de la arena se utilizó un volumen de arena
+conocido junto con su masa. Estas medidas se repitieron un total de cuatro 
+veces, para intentar minimizar la incertidumbre en la medición. Los resultados
+de las mediciones se encuentran en la tabla \ref{tab:datos:densidades}, y
+se encontró un valor final de
+\csvreader[]{data/densidad.csv}{}{
+    $\delta = \bar{\delta} \pm 1.5\,\sigma_{\delta} = 
+    \SI{\csvcoli \pm \csvcolii}{\gram\per\milli\liter}$}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = ccc,
+        table head = \toprule $m$ (\si{\gram} $\pm\, 0.1$) & $V$ (\si{\milli\liter} $\pm\, 0.5$) & $\delta$ (\si{\gram\per\milli\liter}) \\\midrule,
+        table foot = \bottomrule,
+    ]{data/mediciones-densidad.csv}{}{
+        \num{\csvcoli} & \num{\csvcolii} & \num[round-mode = places, round-precision = 2]{\csvcoliii}
+    }
+    \caption{Datos obtenidos para la densidad}
+    \label{tab:datos:densidades}
+\end{table}
+
+Con un calibre se midieron cuatro veces los diámetros de los orificios de cada 
+tapa, para minimizar la incertidumbre de las mediciones teniendo en cuenta
+que los bordes de estos orificios no eran perfectos. Los resultados de estas 
+mediciones se encuentran en la tabla \ref{tab:datos:mediciones-diametros}.
+Tomando $d = \bar{d} \pm 1.5\, \sigma_d$ se calculan los valores de la tabla
+\ref{tab:datos:diametros} que se utilizarán en los cálculos.
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|cccc,
+        table head = \toprule Número & Tapa 1 & Tapa 2 & Tapa 3 & Tapa 4 \\\midrule,
+        table foot = \bottomrule,
+    ]{data/mediciones-diametros.csv}{}{
+        \csvcoli & \num{\csvcolii} & \num{\csvcoliii} & \num{\csvcoliv} & \num{\csvcolv}
+    }
+    \caption{Diámetros medidos de cada tapa. Valores expresados en \si{\mm}
+    ($\pm\, 0.02$).}
+    \label{tab:datos:mediciones-diametros}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|c,
+        table head = \toprule Tapa & $d$ (\si{\mm}) \\\midrule,
+        table foot = \bottomrule,
+    ]{data/diametros.csv}{}{
+        \csvcoli & \num{\csvcolii \pm \csvcoliii}
+    }
+    \caption{Diámetros calculados para cada tapa.}
+    \label{tab:datos:diametros}
+\end{table}
+
+Para cada tamaño de orificio se midieron cuatro veces distintos parámetros de la
+recta $F$ (\si{\newton}) vs. $t$ (\si{\second}) con la ayuda de un software
+informático. Los resultados se encuentran en la tabla 
+\ref{tab:datos:mediciones-pendientes}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|cc|cc|c,
+        table head = \toprule Tapa & $m$ (\si{\newton\per\second}) & $\sigma_m$ (\si{\newton\per\second}) & $b$ (\si{\newton}) & $\sigma_b$ (\si{\newton}) & $r$ \\\midrule,
+        table foot = \bottomrule,
+    ]{data/mediciones-pendientes.csv}{}{
+        \csvcoli & \num{\csvcolii} & \num{\csvcolv} & \num{\csvcoliii} & \num{\csvcolvi} & \num{\csvcoliv}
+    }
+    \caption{Valores medidos de pendientes y ordenadas.}
+    \label{tab:datos:mediciones-pendientes}
+\end{table}

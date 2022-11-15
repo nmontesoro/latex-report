@@ -13,6 +13,7 @@
 \usepackage{cancel} % Permite cancelar términos
 
 \usepackage{amssymb}
+\usepackage{csvsimple}
 
 % --- Para listar código
 \usepackage{listings} 
@@ -85,7 +86,9 @@ sorting=ynt
 \usepackage{siunitx}
 \sisetup{
     separate-uncertainty=true,
-    locale = DE
+    locale = DE,
+    round-mode = uncertainty,
+    round-precision = 1
 }
 
 % --- Para TODOs y comentarios
@@ -105,6 +108,8 @@ sorting=ynt
 
     \input{title}
     \tableofcontents
+
+    \input{src/datos}
 
     \input{src/resolucion}
 
