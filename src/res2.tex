@@ -1,0 +1,58 @@
+\question{
+    Grafique el caudal en función del diámetro del orificio, en escala 
+logarítmica.
+}
+
+\answer{
+    El gráfico entregado por el software es uno de $F$ vs. $t$. Dado que 
+    $F = ma$ y teniendo en cuenta que la fuerza medida es el peso, se puede
+    decir que $F = P = mg$ y que, al menos para los datos que manejamos, esta
+    función tiene forma de recta. Por lo tanto, si $A$ y $B$ son la pendiente y
+    ordenada de esta recta, se puede decir que
+
+\begin{equation}
+    \label{ec:2:peso}
+    F = mg \approx At + B
+\end{equation}
+
+    Despejando $m$ de la ecuación \ref{ec:2:peso} y derivando respecto del 
+    tiempo se obtiene la ecuación del caudal másico:
+
+\begin{equation}
+    \label{ec:2:caudal-masico}
+    \odv{m}{t} = \frac{A}{g}
+\end{equation}
+
+    Entonces para encontrar el valor del caudal másico bastaría con dividir
+    la pendiente $A$ entregada por el software por el valor de la constante de
+    gravedad $g$. Para cada diámetro de orificio se tomaron los valores de la 
+    tabla \ref{tab:datos:mediciones-pendientes} y se calculó un único valor de 
+    pendiente como $m = \bar{m} \pm 1.5\, \sigma_m$. Luego se dividió cada 
+    pendiente por el valor de la constante de la gravedad\footnote{Se utilizó $g = \SI{9.80665}{\meter\per\second\squared}$ y se 
+despreció la incertidumbre en este valor.}. Los resultados de
+    estas operaciones se encuentran resumidos en la tabla \ref{tab:2:caudales},
+    y fueron utilizados junto con los diámetros de la tabla 
+    \ref{tab:datos:diametros} para construir el gráfico de la figura 
+    \ref{fig:2:caudales}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|c,
+        table head = \toprule Tapa & Caudal (\si{\kg\meter\per\second\cubed}) \\\midrule,
+        table foot = \bottomrule,
+    ]{data/caudales.csv}{}{
+        \csvcoli & \num{\csvcolii \pm \csvcoliii}
+    }
+    \caption{Caudales másicos obtenidos del software.}
+    \label{tab:2:caudales}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \input{img/caudales.tikz}
+    \caption{Caudales másicos vs. diámetro de la tapa.}
+    \label{fig:2:caudales}
+\end{figure}
+
+}
