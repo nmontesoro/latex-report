@@ -18,7 +18,7 @@ main.pdf: main.tex title.tex references.bib $(PRES-DATOS) $(RESOLUCION)
 	biber main
 	pdflatex main.tex
 
-img/caudales.tikz: data/caudales.csv data/diametros.csv code/PlotCaudales.m
+img/caudales.tikz: data/caudales.csv data/diametros.csv code/CaudalesBase.m code/PlotCaudales.m
 	$(OCTAVE) code/PlotCaudales.m
 
 img/regresion.tikz: data/regresion.csv data/caudales.csv data/diametros.csv code/CaudalesBase.m code/PlotRegresion.m
