@@ -1,0 +1,94 @@
+\question{
+Diga si se verifica o no la funcionalidad predicha por el análisis dimensional.
+}
+
+\answer{
+
+Según el análisis dimensional del ejercicio 1, el caudal debería responder a
+la ecuación \ref{ec:3:caudal}, donde $C$ es el caudal másico, $K$ es una 
+constante, $g$ es la constante de la gravedad y $d$ el diámetro del orificio.
+Si se aplica $\log$ a ambos lados y se utilizan las propiedades adecuadas, se 
+obtiene la ecuación \ref{ec:3:caudal-log}:
+
+\begin{equation}
+    \label{ec:3:caudal}
+    C = K\,\delta \,g^{1/2} \,d^{5/2}
+\end{equation}
+
+\begin{equation}
+    \label{ec:3:caudal-log}
+    \log C = \frac{5}{2} \log d + \log \left( K\delta g^{1/2} \right)
+\end{equation}
+
+Graficando $10^{\log C}$ en escala logarítmica se obtendría una recta de 
+pendiente $\frac{5}{2}$, lo que indica que si se aplica regresión lineal a los
+datos de la fig. \ref{fig:2:caudales} debería obtenerse una pendiente $B$
+cercana a \num{2.5} para verificar la funcionalidad del análisis dimensional.
+Siendo $N = 4$ y $x_i$ e $y_i$ los valores de diámetro y caudal de las tablas
+\ref{tab:datos:diametros} y \ref{tab:2:caudales} luego de aplicarles 
+$\log_{10}$, se obtiene:
+
+\newcommand{\denominador}{N \sum {x_i}^2 - \left( \sum x_i \right)^2}
+\newcommand{\columnacsv}[1]{
+    \csvreader[]{data/regresion.csv}{}{#1}
+}
+
+\begin{equation}
+    \label{ec:3:reg-B}
+    B = \frac{N\, \sum x_i y_i - \sum x_i \sum y_i}{\denominador} 
+    = \columnacsv{\num{\csvcoliii}}
+\end{equation}
+
+\vspace{5mm}
+
+\begin{equation}
+    \label{ec:3:reg-A}
+    A = \frac{\sum{x_i}^2 \sum{y_i} - \sum x_i \sum x_i y_i}{\denominador}
+    = \columnacsv{\num{\csvcoliv}}
+\end{equation}
+
+\vspace{5mm}
+
+\begin{equation}
+    \label{ec:3:reg-oY}
+    \sigma_y = \sqrt{ \frac{1}{N-2} \sum \left ( y_i - A - Bx_i \right) ^2 }
+    = \columnacsv{\num{\csvcolv}}
+\end{equation}
+
+\vspace{5mm}
+
+\begin{equation}
+    \label{ec:3:reg-oB}
+    \sigma_B = \sigma_y \sqrt{ \frac{N}{\denominador} }
+    = \columnacsv{\num{\csvcolvi}}
+\end{equation}
+
+\vspace{5mm}
+
+\begin{equation}
+    \label{ec:3:reg-oA}
+    \sigma_A = \sigma_y \sqrt{ \frac{\sum {x_i} ^ 2}{\denominador} }
+    = \columnacsv{\num{\csvcolvii}}
+\end{equation}
+
+\vspace{5mm}
+
+Entonces el valor de pendiente por regresión lineal es
+
+\begin{equation*}
+    B + 3\, \frac{\sigma_B}{\sqrt{N}}
+    = \columnacsv{\num{\csvcoliii \pm \csvcolviii}}
+\end{equation*}
+que es inconsistente con el valor buscado de \num{2.5}. Por lo tanto 
+\textbf{no es posible verificar la funcionalidad del análisis dimensional.}
+La recta encontrada está graficada en la fig. \ref{fig:3:regresion}.
+
+\begin{figure}[H]
+    \centering
+    \input{img/regresion.tikz}
+    \caption{Regresión lineal sobre los datos obtenidos.}
+    \label{fig:3:regresion}
+\end{figure}
+
+}
+
