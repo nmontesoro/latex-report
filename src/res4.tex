@@ -57,7 +57,7 @@ la tabla \ref{tab:4:regresion}:
 
 Con los valores de la tabla \ref{tab:4:regresion} se calcula un valor 
 $\varepsilon$ de
-\csvreader[]{data/regresion2.csv}{}{\SI{\csvcolv \pm \csvcolvi}{\mm}}.Con este
+\csvreader[]{data/regresion2.csv}{}{\SI{\csvcolv \pm \csvcolvi}{\mm}}. Con este
 valor se vuelve a plantear una última regresión lineal, esta vez tomando 
 $x_i = \log \left(d_i-\varepsilon\right)$ e $y_i = \log C_i$. Nuevamente se
 busca que el valor de la pendiente sea cercano a \num{2.5}. Los valores de los
