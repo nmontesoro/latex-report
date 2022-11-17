@@ -11,6 +11,6 @@ function CaudalesBase()
     set(gca, "xscale", "log");
     set(gca, "yscale", "log");
     xlabel("$d$ (\\si{\\mm})");
-    ylabel("Caudal (\\si{\\kg\\meter\\per\\second\\cubed})");
+    ylabel("Caudal (\\si{\\kg\\per\\second})");
     grid on;
 end

@@ -39,7 +39,7 @@ logarítmica.
     \centering
     \csvreader[
         tabular = r|c,
-        table head = \toprule Tapa & Caudal (\si{\kg\meter\per\second\cubed}) \\\midrule,
+        table head = \toprule Tapa & Caudal (\si{\kg\per\second}) \\\midrule,
         table foot = \bottomrule,
     ]{data/caudales.csv}{}{
         \csvcoli & \num{\csvcolii \pm \csvcoliii}
