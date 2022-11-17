@@ -8,8 +8,9 @@ PRES-DATOS = src/datos.tex $(DATOS)
 EJ1 = src/res1.tex
 EJ2 = src/res2.tex data/caudales.csv img/caudales.tikz
 EJ3 = src/res3.tex data/regresion.csv img/regresion.tikz
+EJ4 = src/res4.tex data/regresion2.csv img/funcion.tikz
 
-RESOLUCION = src/resolucion.tex $(EJ1) $(EJ2) $(EJ3)
+RESOLUCION = src/resolucion.tex $(EJ1) $(EJ2) $(EJ3) $(EJ4)
 
 all: main.pdf
 
@@ -23,6 +24,9 @@ img/caudales.tikz: data/caudales.csv data/diametros.csv code/CaudalesBase.m code
 
 img/regresion.tikz: data/regresion.csv data/caudales.csv data/diametros.csv code/CaudalesBase.m code/PlotRegresion.m
 	$(OCTAVE) code/PlotRegresion.m
+
+img/funcion.tikz: data/densidad.csv data/regresion2.csv code/CaudalesBase.m code/PlotFuncion.m
+	$(OCTAVE) code/PlotFuncion.m
 
 clean:
 	rm *.aux *.bbl *.bcf *.blg *.log *.pdf *.run.xml *.toc *.out

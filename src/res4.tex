@@ -1,0 +1,111 @@
+\question{
+
+Si el valor de la potencia del diámetro no coincide con el predicho por el 
+análisis dimensional, usted puede tener en cuenta lo siguiente: es razonable
+asumir que el flujo está afectado por el choque de los granos individuales de 
+arena y los bordes del orificio de salida. Debido al tamaño finito de los 
+granos individuales, es necesario modificar la ecuación. Entonces:
+
+\begin{equation*}
+    \odv{m}{t} = Q = F \left( \delta,\, g,\, d - \varepsilon \right)
+\end{equation*}
+
+Donde $\varepsilon$ es la magnitud de la reducción del diámetro. En una 
+primera aproximación, parece razonable elegir $\varepsilon$ igual al tamaño
+típico del grano de arena.
+
+Proponga esta corrección y determine de sus valores experimentales el valor
+de $\varepsilon$ con su error.
+
+}
+
+\answer{
+
+Se reescribe la ecuación obtenida en el primer ejercicio como la ec. 
+\ref{ec:4:caudal}. Luego de elevar ambos lados de la igualdad a la 
+$2/5$ se obtiene la ecuación \ref{ec:4:caudal-elevado}.
+
+\begin{equation}
+    \label{ec:4:caudal}
+    C\left(d\right) = K\, \delta\, g^{1/2}\, \left( d - \varepsilon \right) ^ {5/2}
+\end{equation}
+
+\begin{equation}
+    \label{ec:4:caudal-elevado}
+    C^{2/5} = B \, \left( d - \varepsilon \right),\ 
+    B = \left[ k\, \delta\, g^{1/2} \right] ^ {2/5}
+\end{equation}
+
+Entonces, si se elevan los valores de caudal de la tabla \ref{tab:2:caudales} a la
+$2/5$ y se vuelve a realizar una regresión lineal, se obtendrá como resultado 
+una recta de mejor ajuste de pendiente $B$ y ordenada $A = -B\varepsilon$. Por
+lo tanto, repitiendo los cálculos del ejercicio 3 se obtienen los valores de 
+la tabla \ref{tab:4:regresion}:
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        table head = \toprule $B$ & $A$ \\\midrule,
+        table foot = \bottomrule,
+        tabular = cc
+    ]{data/regresion2.csv}{}{
+        \num{\csvcolii \pm \csvcoliv} & \num{\csvcoli \pm \csvcoliii}
+    }
+    \caption{Valores de regresión para $C^{2/5}$ con modelo ajustado.}
+    \label{tab:4:regresion}
+\end{table}
+
+Con los valores de la tabla \ref{tab:4:regresion} se calcula un valor 
+$\varepsilon$ de
+\csvreader[]{data/regresion2.csv}{}{\SI{\csvcolv \pm \csvcolvi}{\mm}}.Con este
+valor se vuelve a plantear una última regresión lineal, esta vez tomando 
+$x_i = \log \left(d_i-\varepsilon\right)$ e $y_i = \log C_i$. Nuevamente se
+busca que el valor de la pendiente sea cercano a \num{2.5}. Los valores de los
+cálculos se encuentran en la tabla \ref{tab:4:regresion-final}:
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        table head = \toprule $B$ & $A$ \\\midrule,
+        table foot = \bottomrule,
+        tabular = cc
+    ]{data/regresion2.csv}{}{
+        \num{\csvcolviii \pm \csvcolx} & \num{\csvcolvii \pm \csvcolix}
+    }
+    \caption{Regresión lineal para el modelo ajustado, aplicando $\log$}
+    \label{tab:4:regresion-final}
+\end{table}
+
+Según la tabla \ref{tab:4:regresion-final} el valor de la pendiente es
+ahora consistente con el valor esperado, por lo que \textbf{sí se verifica
+la funcionalidad predicha por el análisis dimensional}. Ahora, sabiendo que 
+$A = \log \left( k\,\delta\,g^{1/2} \right)$ (por la ec. \ref{ec:3:caudal-log}),
+se encuentra el valor de la constante
+$k = \csvreader[]{data/regresion2.csv}{}{\num{\csvcolxi \pm \csvcolxii}}$
+(adimensional), mediante las ecuaciones \ref{ec:4:k} y
+\ref{ec:4:dk} (despreciando la incertidumbre en la constante $g$).
+
+\begin{equation}
+    \label{ec:4:k}
+    k = 10^{A}\, \delta^{-1}\, g^{-1/2}
+\end{equation}
+
+\begin{equation}
+    \label{ec:4:dk}
+    \Delta k =
+    \left| \frac{2}{5} B^{3/2}\, \delta^{-1}\, g^{-1/2} \right| \cdot \Delta B
+    + \left| -B^{5/2}\, \delta^{-2}\, g^{-1/2} \right| \cdot \Delta \delta
+\end{equation}
+
+Se puede concluír que el modelo planteado por la ecuación \ref{ec:3:caudal} es
+válido. La gráfica de la figura \ref{fig:4:funcion} ilustra esta función con 
+los datos calculados anteriormente.
+
+\begin{figure}[H]
+    \centering
+    \input{img/funcion.tikz}
+    \caption{Representación del modelo matemático y los datos experimentales.}
+    \label{fig:4:funcion}
+\end{figure}
+
+}
