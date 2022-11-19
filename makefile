@@ -17,7 +17,7 @@ OCTAVE2 = $(OCTAVE) -p code/2
 
 all: $(DATA) main.pdf
 
-main.pdf: main.tex title.tex references.bib src/resumen.tex src/objetivos.tex $(INTRO) src/metodos.tex $(PARTE1) $(PARTE2) src/conclusion.tex
+main.pdf: main.tex title.tex references.bib src/resumen.tex src/objetivos.tex $(INTRO) src/metodos.tex $(PARTE1) $(PARTE2) src/conclusion.tex src/apendice.tex
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
