@@ -1,40 +1,74 @@
 \subsection{Datos obtenidos}
 
-Para el amplificador no inversor, la tensión del nodo de entrada fue
-$v_i = \SI{9.61 \pm 0.01}{\volt}$. Para los valores de resistencia 
-$R_L$ de 47, 10 y \SI{1}{\kilo\ohm} se obtuvo siempre el mismo valor de
-tensión a la salida del operacional: $v_o = \SI{20.90 \pm 0.01}{\volt}$.
-
-Haciendo uso nuevamente de las ecuaciones \ref{ec:1-teoria:ganancia-experimental} y 
-\ref{ec:1-teoria:err-ganancia-experimental} para el cálculo de la ganancia y del error, se
-obtiene una ganancia $A = \num{2.174817898 \pm 0.003303660664}$.
-
-En el caso del seguidor de tensión, $v_i = \SI{9.59 \pm 0.01}{\volt}$
-y la salida registró $v_o = \SI{9.57 \pm 0.01}{\volt}$ para los tres valores
-utilizados de $R_L$. La ganancia entonces es 
-$A = \num{0.9979144943 \pm 0.002083331068}$.
-
-Con los datos anteriores y sabiendo que
-
-\[
-    I_{R_L} = \frac{v_o}{R_L} \quad\quad
-    \Delta I_{R_L} = \frac{\Delta v_o}{R_L} + 
-                     \left| \frac{-v_o}{{R_L}^2} \right| \Delta R_L 
-\]
-se calculan los valores de la tabla \ref{tab:2-datos:irl}.
+Los valores de tensión medidos para el amplificador no inversor se encuentran
+en la tabla \ref{tab:2-datos:no-inversor}. Haciendo uso nuevamente de las 
+ecuaciones \ref{ec:1-teoria:ganancia-experimental} y 
+\ref{ec:1-teoria:err-ganancia-experimental} para el cálculo de la ganancia y 
+del error, se hallan los valores de la tabla \ref{tab:2-datos:ganancia-no-inversor}.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{@{}r|rr@{}}
-        \toprule
-        $R_L$ (nominal, \si{\kilo\ohm}) & $R_L$ (medido, \si{\kilo\ohm}) & $I_{R_L}$
-            (\si{\micro\ampere}) \\
-        \midrule
-        47 & \num{46.6 \pm 0.1} & \num{205.4 \pm 0.7} \\
-        10 & \num{15.64 \pm 0.01} & \num{612 \pm 1} \\
-         1 & \num{9.94 \pm 0.01} & \num{963 \pm 2} \\ \bottomrule
-    \end{tabular}
-    \caption{Corrientes por las resistencias $R_L$ en el seguidor de tensión
-    ($v_i = \SI{9.57 \pm 0.01}{\volt}$)}
+    \csvreader[
+        tabular = r|ccc,
+        table head = \toprule $R_L$ (nominal - \si{\kilo\ohm}) & $R_L$ (medido - \si{\kilo\ohm}) & $v_i$ (\si{\volt}) & $v_o$ (\si{\volt}) \\ \midrule,
+        table foot = \bottomrule,
+    ]{data/2/mediciones.csv}{}{
+        \csvcoli & \num{\csvcolii \pm \csvcoliii} & \num{\csvcolvii \pm \csvcolviii} & \num{\csvcolv \pm \csvcolvi}
+    }
+    \caption{Valores medidos para el amplificador no inversor.}
+    \label{tab:2-datos:no-inversor}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|c,
+        table head = \toprule $R_L$ (nominal - \si{\kilo\ohm}) & $A$ \\\midrule,
+        table foot = \bottomrule,
+    ]{data/2/mediciones.csv}{}{
+        \num{\csvcoli} & \num{\csvcolix \pm \csvcolx}
+    }
+    \caption{Valores de ganancia medidos para el amplificador no inversor.}
+    \label{tab:2-datos:ganancia-no-inversor}
+\end{table}
+
+Para el caso del seguidor de tensión se midieron los valores de la tabla 
+\ref{tab:2-datos:seguidor}.
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|ccc,
+        table head = \toprule $R_L$ (nominal - \si{\kilo\ohm}) & $v_i$ (\si{\volt}) & $v_o$ (\si{\volt}) & $A$ \\\midrule,
+        table foot = \bottomrule,
+    ]{data/2/mediciones-seguidor.csv}{}{
+        \num{\csvcoli} & \num{\csvcolv \pm \csvcolvi} & \num{\csvcolvii \pm \csvcolviii} & \num{\csvcolix \pm \csvcolx}
+    }
+    \caption{Valores medidos para el seguidor de tensión.}
+    \label{tab:2-datos:seguidor}
+\end{table}
+
+Con los datos anteriores y utilizando la ecuación
+\ref{ec:2-datos:corriente-seguidor} se calculan los valores de la tabla
+\ref{tab:2-datos:irl}.
+
+\begin{equation}
+    \label{ec:2-datos:corriente-seguidor}
+    I_{R_L} = \frac{v_o}{R_L} \quad\quad
+    \Delta I_{R_L} = \frac{\Delta v_o}{R_L} + 
+                     \left| \frac{-v_o}{{R_L}^2} \right| \Delta R_L 
+\end{equation}
+
+\begin{table}[H]
+    \centering
+    \csvreader[
+        tabular = r|cc,
+        table head = \toprule $R_L$ (nominal - \si{\kilo\ohm}) & $R_L$ (medido - \si{\kilo\ohm}) & $I_{R_L}$ (\si{\milli\ampere}) \\\midrule,
+        table foot = \bottomrule,
+    ]{data/2/mediciones-seguidor.csv}{}{
+        \num{\csvcoli} & \num{\csvcolii \pm \csvcoliii} & \num{\csvcolxi \pm \csvcolxii}
+    }
+    \caption{Corrientes por resistor $R_L$.}
     \label{tab:2-datos:irl}
 \end{table}
+

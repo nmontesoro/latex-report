@@ -7,8 +7,9 @@ ANALISIS1 = src/1/analisis.tex img/1/ganancia.tikz
 PARTE1 = src/1/main.tex src/1/esquematico.tikz src/1/teoria.tex $(SIMULACION1) src/1/datos.tex presentacion-datos-1 img/1/osciloscopio-1.jpg $(ANALISIS1)
 
 SIMULACION2 = src/2/simulacion.tex img/2/ltspice.png img/2/ltspice-seguidor.png img/2/recta-spice.tikz
-ANALISIS2 = src/2/analisis.tex img/2/ganancia.tikz img/2/ganancia-seguidor.tikz img/2/recta-carga.tikz
-PARTE2 = src/2/main.tex src/2/esquematico.tikz src/2/esquematico-seguidor.tikz src/2/teoria.tex $(SIMULACION2) src/2/datos.tex $(ANALISIS2)
+ANALISIS2 = src/2/analisis.tex img/2/ganancia.tikz img/2/ganancia-seguidor.tikz img/2/recta-carga.tikz data/2/mediciones.csv data/2/mediciones-seguidor.csv
+DATOS2 = src/2/datos.tex data/2/mediciones.csv data/2/mediciones-seguidor.csv
+PARTE2 = src/2/main.tex src/2/esquematico.tikz src/2/esquematico-seguidor.tikz src/2/teoria.tex $(SIMULACION2) $(DATOS2) $(ANALISIS2)
 
 OCTAVE = octave -Wq -p code/shared
 OCTAVE1 = $(OCTAVE) -p code/1
@@ -33,16 +34,16 @@ presentacion-datos-1: code/1/GenTablasDatos.m data/1/mediciones-parsed.csv code/
 img/1/ganancia.tikz: code/1/PlotGanancia.m data/1/mediciones-parsed.csv
 	$(OCTAVE1) code/1/PlotGanancia.m
 
-img/2/ganancia.tikz: code/2/PlotAnalisis.m
+img/2/ganancia.tikz: code/2/PlotAnalisis.m data/2/mediciones.csv
 	$(OCTAVE2) code/2/PlotAnalisis.m
 
-img/2/ganancia-seguidor.tikz: code/2/PlotAnalisis.m
+img/2/ganancia-seguidor.tikz: code/2/PlotAnalisis.m data/2/mediciones-seguidor.csv
 	$(OCTAVE2) code/2/PlotAnalisis.m
 
-img/2/recta-carga.tikz: code/2/PlotAnalisis.m
+img/2/recta-carga.tikz: code/2/PlotAnalisis.m data/2/mediciones-seguidor.csv
 	$(OCTAVE2) code/2/PlotAnalisis.m
 
-img/2/recta-spice.tikz: code/2/PlotRectaSpice.m
+img/2/recta-spice.tikz: code/2/PlotRectaSpice.m data/2/seguidor.csv
 	$(OCTAVE2) code/2/PlotRectaSpice.m
 
 clean:
