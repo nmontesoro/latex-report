@@ -5,7 +5,8 @@ Los gráficos de las figs. \ref{fig:2-analisis:ganancia-opamp} y
 de ganancia calculados teóricamente con los encontrados por simulación, y con
 los valores calculados luego de tomar las mediciones. Se observa que los
 valores experimentales y de simulación caen dentro del margen de error
-esperado (descrito en la sección de cálculos teóricos).
+esperado (descrito en la sección de cálculos teóricos), excepto en el caso del
+seguidor de tensión con $R_L = \SI{47}{\kilo\ohm}$.
 
 \begin{figure}[H]
     \centering
@@ -23,10 +24,11 @@ esperado (descrito en la sección de cálculos teóricos).
 
 Por otro lado, el gráfico de la fig. \ref{fig:2-analisis:recta-carga} muestra
 cómo quedaría la recta de carga del seguidor de tensión teniendo en cuenta
-los valores de tensión y resistencia medidos experimentalmente. Como puede
-verse, se trata de una recta cuya pendiente tiende a $\infty$, tal cual se
-obtuvo en la simulación con LTSpice. De haber usado valores de $R_L$ mucho
-menores, en torno a los $\SI{200}{\ohm}$, hubiera sido posible comprobar si
+los valores de tensión y resistencia medidos experimentalmente. Esta recta de
+carga fue construída mediante regresión lineal de dichos valores. Se trata de 
+una recta casi vertical, como la predicha por el análisis mediante LTSpice 
+(fig. \ref{fig:2:recta-spice}). De haber usado valores de $R_L$ mucho
+menores, en torno a los \SI{200}{\ohm}, hubiera sido posible comprobar si
 el modelo de LTSpice continúa siendo válido (si es que el seguidor de
 tensión sigue proveyendo un valor cercano a $v_i$ en la salida, o si
 efectivamente ocurre lo descrito en la fig. \ref{fig:2:recta-spice}).

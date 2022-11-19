@@ -60,8 +60,8 @@ coefs = polyfit(V, I, 1);
 f = @(X) coefs(1) .* X .+ coefs(2);
 hold on;
 fplot(f, [9.5 9.8])
-xlim([9.5 9.8])
-ylim([-0.5 10.5])
+xlim([0 12])
+ylim([0 10])
 
 legend("Datos experimentales", sprintf("$%4.0f\\,v_o + %4.0f$", coefs(1), coefs(2)) ...
     , "location", "west");
