@@ -2,7 +2,7 @@
 
 all: main.pdf
 
-main.pdf: main.tex title.tex references.bib
+main.pdf: main.tex title.tex references.bib intro.tex er.tex
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex

@@ -11,6 +11,9 @@
 \usepackage{graphicx} % Extended interface for graphics inclusion
 \usepackage{float} % Mejor soporte de float para figuras
 \usepackage{cancel} % Permite cancelar términos
+\usepackage{ulem} % Subrayados
+\usepackage{pdflscape} % Páginas horizontales
+\usepackage{mfirstuc} % Primera letra mayúscula
 
 % --- Para listar código
 \usepackage{listings} 
@@ -103,6 +106,9 @@ sorting=ynt
 
     \input{title}
     \tableofcontents
+
+    \include{intro.tex}
+    \include{er.tex}
     
     \newpage
     \section{Bibliografía}

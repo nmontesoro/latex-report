@@ -1,0 +1,98 @@
+\section{Consigna}
+
+\subsection{Introducción}
+
+A continuación se reproduce la sección de introducción de las consignas de
+este trabajo práctico:
+
+El objetivo del trabajo práctico es: que los alumnos puedan implementar una 
+solución para un problema del mundo real utilizando las herramientas de algún 
+motor de base de datos. El motor en el que se va a efectuar la entrega puede ser
+de tipo open source o no. En todos los casos los alumnos deberán asegurarse de 
+contar con el software necesario para poder mostrar el trabajo práctico en las 
+fechas y lugar de entrega.
+
+Al momento de la corrección se tendrán en cuenta tanto la correctitud de la 
+solución como el uso de las herramientas disponibles en el motor elegido.
+
+La entrega deberá constar, como mínimo, de la siguiente documentación:
+
+\begin{itemize}
+    \item  Modelo de Entidad Relación y Modelo Relacional derivado, utilizados 
+        para implementar la solución.
+    \item Detalle de los supuestos asumidos para la resolución del problema.
+    \item Diseño físico correspondiente a la solución implementada.
+    \item Restricciones adicionales al modelo
+    \item Código correspondiente a los stored procedures/ triggers que se hayan 
+    implementado en la solución.
+\end{itemize}
+
+Además la base que se use para efectuar la demostración deberá contener datos de
+prueba cargados de tal forma de poder evaluar la forma en que funcionan las 
+consultas que forman parte de los requerimientos.
+
+No es necesario entregar una interfase para ejecutar las consultas, las mismas 
+podrán ser ejecutadas directamente desde la interfase del motor de base de datos
+elegido.
+
+Recomendamos la consulta periódica con los docentes sobre el avance del trabajo, 
+antes de la fecha de entrega.
+
+\subsection{Descripción del problema}
+
+Se desea diseñar una base de datos para controlar la seguridad en un Laboratorio que trabaja con
+materiales peligrosos.
+
+Las instalaciones están divididas en áreas, cada una asociada con un nivel de seguridad, que
+puede ser baja, media o alta. En un futuro estos niveles podrían modificarse.
+
+El personal de la empresa pertenece a distintas categorías según su función: jerárquico,
+profesional y no-profesional, y de todos ellos es necesario registrar sus datos personales.
+
+Cada área está asociada con un nombre, un número de área y con un empleado jerárquico
+responsable de la misma. Por otro lado, cada empleado jerárquico tiene asignada un área que
+dirige. Es necesario registrar la fecha a partir de la cual ese empleado se hizo cargo del área en
+cuestión, y además un historial de los eventos más destacados de dicha área, según fecha y hora
+de ocurridos. Por ejemplo, podría agendarse la falta de algún material necesario para cierto
+experimento y el reemplazo del mismo.
+
+Los empleados profesionales están asociados con una especialidad y pueden ser de ``planta
+permanente'' o ``contratados'' durante un período para desarrollar un trabajo específico. En este
+último caso es necesario llevar registro del área para la cual fue contratado el profesional, la tarea
+a realizar y el período de contrato. Ocasionalmente, sobre algunos de estos trabajos se realizan
+auditorías, siendo necesario registrar fecha y hora de la misma y su resultado. Tener en cuenta que
+un empleado de planta trabaja en un área específica, mientras que un profesional contratado pudo
+haber trabajado en distintas áreas en caso de haber sido contratado más de una vez.
+
+Por otro lado, los empleados no-profesionales pueden tener acceso a distintas áreas pero éstas
+deben pertenecer al mismo nivel de seguridad, ya que la empresa los capacita para ello. Con
+respecto a este punto, es necesario saber por cada empleado no-profesional, para qué nivel de
+seguridad está preparado, qué áreas tiene asignadas actualmente y en qué franja horaria está
+autorizado su acceso por área. Las franjas horarias o turnos están estandarizados dentro del
+Laboratorio, por ejemplo, 8 a 12hs, 12 a 16hs, etc.
+
+Las áreas con seguridad media y alta tienen acceso restringido. Cada vez que un empleado ingresa
+o abandona un área, el mismo debe registrarse en el sistema a través de su huella dactilar. En caso
+de no funcionar este sistema (por ejemplo, no funciona el lector de huellas), el ingreso/egreso se
+hará a través de su número identificatorio y una contraseña. El sistema registra, entonces, fecha y
+hora de ingreso/egreso de cada empleado a un área específica y si la acción fue autorizada o no.
+Todo empleado (incluyendo profesionales contratados), cuenta con un número identificatorio
+dentro del Laboratorio.
+
+Las funcionalidades que se esperan implementadas (stored procedures/triggers) son:
+
+\begin{itemize}
+    \item Obtener el nombre, apellido y número identificatorio de los empleados No Profesionales
+que pueden ingresar a todas las áreas del nivel de seguridad asignado.
+    \item Mediante una vista obtener los empleados que en el día de la fecha han realizado algún
+intento de ingreso fallido a un área sin contar con un ingreso exitoso posterior para la
+misma. Incluir el área donde intento ingresar en las columnas que devuelve la vista.
+    \item Obtener los datos personales de los empleados que en los últimos 30 días cuentan con una
+cantidad de intentos fallidos mayor a 5 o con al menos un intento de ingreso en un área
+cuyo nivel de seguridad sea superior al que tienen asignado.
+    \item Implementar un control en la base de datos que impida que a un empleado se le asigne un
+área si no está capacitado para el nivel de seguridad de ese área.
+    \item Implementación de alguna restricción adicional que surja del diseño.
+    \item Desarrollar una aplicación sencilla en un lenguaje host que acceda a la base de datos y
+permita realizar una operación sobre la misma, justificando el uso de transacciones
+\end{itemize}

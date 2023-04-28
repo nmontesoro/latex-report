@@ -1,0 +1,463 @@
+\section{Resolución}
+\subsection{Modelo entidad-relación}
+
+El modelo entidad-relación que planteamos es el de la fig. \ref{fig:der}.
+Asumimos las siguientes hipótesis:
+
+\begin{itemize}
+    \item La especialidad del Profesional es única. En caso de no serlo, se 
+        constata la más pertinente al trabajo que realiza.
+    \item Pueden existir Áreas que todavía no tengan ni empleados ni director 
+        asignados.
+    \item Los empleados deben tener como mínimo 16 años para trabajar en el 
+        laboratorio.
+    \item No todos los No Profesionales tienen instauradas franjas horarias 
+        desde que son ingresados a la base de datos.
+    \item Los No Profesionales ocupan una única franja horaria. En caso de no 
+        existir, ésta se crea para asignársela.
+    \item Los tipos de empleado son disjuntos. Un empleado no podrá ser de dos 
+        tipos a la vez.
+    \item El tipo de Profesional es disjunto. Un empleado de Planta Permanente 
+        no podrá ser contratado y viceversa.
+    \item El resultado de una auditoría es un booleano que puede o no venir 
+        acompañado de una descripción breve.
+\end{itemize}
+
+\begin{landscape}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=0.95\textheight]{/home/naza/Documents/drawing3.pdf}
+    \caption{Diagrama Entidad-Relación}
+    \label{fig:der}
+\end{figure}
+\end{landscape}
+
+Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
+
+\begin{itemize}
+    \item Todo empleado debe ser jerarquico o profesional o no profesional. A su
+        vez entre jerárquico, profesional y no profesional se debe obtener a 
+        todos los empleados.
+    \item Todo profesional debe ser contratado o de planta permanente. A su vez 
+        entre planta permanente y contratado se debe obtener a todos los 
+        empleados.
+\end{itemize}
+
+\section{Modelo lógico-relacional}
+
+\newcommand{\pk}[1]{\underline{#1}}
+\newcommand{\fk}[1]{\dashuline{#1}}
+\newcommand{\ent}[1]{\uppercase{\texttt{#1}}}
+\newcommand{\att}[1]{\texttt{\makefirstuc{#1}}}
+\newcommand{\CK}[1]{CK=\{(#1)\}}
+\newcommand{\FK}[1]{FK=\{(#1)\}}
+\newcommand{\PK}[1]{PK=\{(#1)\}}
+\newcommand{\fmin}[2]{$F_{\text{mín}}$: \{#1\} $\rightarrow$ \{#2\}}
+
+\begin{itemize}
+    \item \ent{Empleado}(\pk{\att{Legajo}}, \att{Nombre}, \att{Apellido}, 
+        \att{F\_nac}, \att{Nro\_tel}, \att{Huella}, \att{Pwd}, \att{Tipo\_empl},
+        \fk{\att{Id\_seg}})
+        \begin{itemize}
+            \item \ent{Empleado}.\att{Id\_seg} debe estar en 
+                \ent{Seguridad}.\att{Id\_seg}.
+            \item \ent{Empleado}.\att{Id\_seg} no puede ser nulo.
+            \item \ent{Empleado}.\att{Tipo\_empl} es \{0 (\ent{profesional}), 1 
+                    (\ent{no\_profesional}), 2 (\ent{jerarquico})\}.
+            \item \ent{Empleado}.\att{Tipo\_empl} no puede ser nulo.
+            \item \CK{\att{legajo}}.
+            \item \PK{\att{legajo}}.
+            \item \FK{\att{Id\_seg}}.
+            \item Normalización:
+                \begin{itemize}
+                    \item \fmin{\att{legajo}}{\att{Nombre}, \att{Apellido}, 
+                            \att{F\_nac}, \att{Nro\_tel}, \att{Huella}, 
+                            \att{Pwd}, \att{Tipo\_empl}, \att{Id\_seg}}.
+                    \item BCNF({\att{legajo}} es superclave de \ent{empleado}, 
+                        está del lado izquierdo de su dependencia funcional).
+                \end{itemize}
+        \end{itemize}
+
+    \item \ent{seguridad}(\pk{\att{Id\_seg}}, \att{Desc}, \att{Nivel})
+        \begin{itemize}
+            \item \ent{seguridad}.\att{id\_seg} debe estar en 
+                \ent{area\_restringida}.\att{id\_seg}.
+            \item Los niveles de seguridad se ordenan según \att{nivel}. Con 
+                esto se permite añadir nuevos niveles, incluso intermedios, sin
+                modificar el resto de las instancias.
+            \item \CK{\att{id\_seg}}.
+            \item \PK{\att{id\_seg}}.
+            \item \FK{$\emptyset$}.
+            \item Normalización:
+                \begin{itemize}
+                    \item \fmin{\att{id\_seg}}{\att{desc}, \att{nivel}}.
+                    \item BCNF(\{\att{id\_seg}\} es superclave de 
+                        \ent{seguridad} y está del lado izquierdo de su 
+                        dependencia funcional.
+                \end{itemize}
+        \end{itemize}
+        
+    \item \ent{profesional}(\pk{\fk{\att{legajo}}}, \att{tipo\_prof}, 
+        \fk{\att{id\_esp}})
+            \begin{itemize}
+                \item \ent{profesional}.\att{tipo\_prof} es \{0 
+                        (\ent{planta\_permanente}), 1 (\ent{contratado})\}.
+                \item \ent{profesional}.\att{legajo} debe estar en 
+                    \ent{empleado}.\att{legajo}.
+                \item \ent{profesional}.\att{id\_esp} debe estar en 
+                    \ent{especialidad}.\att{id\_esp}.
+                \item Para \ent{profesional}.\att{legajo} == 
+                    \ent{empleado}.\att{legajo}, 
+                    \ent{empleado}.\att{tipo\_emp} = 0.
+                \item \CK{\att{legajo}}.
+                \item \PK{\att{legajo}}.
+                \item \FK{\att{id\_seg}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{legajo}}{\att{tipo\_prof}, 
+                                \att{id\_esp}}.
+                        \item BCNF(\{\att{legajo}\} es superclave de 
+                            \ent{profesional} y está del lado izquierdo de su 
+                            dependencia funcional.
+                    \end{itemize}
+            \end{itemize}
+            
+        \item \ent{especialidad}(\pk{\att{id\_esp}}, \att{desc})
+            \begin{itemize}
+                \item \ent{especialidad}.\att{id\_esp} debe estar en 
+                    \ent{profesional}.\att{id\_esp}.
+                \item \CK{\att{id\_esp}}.
+                \item \PK{\att{id\_esp}}.
+                \item \FK{$\emptyset$}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{id\_esp}}{\att{desc}}.
+                        \item BCNF(\{\att{legajo}\} es superclave de 
+                            \ent{especialidad} y está del lado izquierdo de su 
+                            dependencia funcional.
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{planta\_permanente}(\pk{\fk{\att{legajo}}}, 
+            \fk{\att{nro\_area}})
+            \begin{itemize}
+                \item \ent{planta\_permanente}.\att{legajo} debe estar en 
+                    \ent{profesional}.\att{legajo}.
+                \item \ent{planta\_permanente}.\att{nro\_area} debe estar en
+                    \ent{area}.\att{nro\_area}.
+                \item Para \ent{planta\_permanente}.\att{legajo} == 
+                    \ent{profesional}.\att{legajo}, 
+                    \ent{profesional}.\att{tipo\_prof} = 0.
+                \item \ent{empleado}.\att{id\_seg} de 
+                    \ent{planta\_permanente}.\att{legajo} $\geq$ 
+                    \ent{area\_restringida}.\att{seguridad} de 
+                    \ent{planta\_permanente}.\att{nro\_area}.
+                \item \CK{\att{legajo}}.
+                \item \PK{\att{legajo}}.
+                \item \FK{\att{nro\_area}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{legajo}}{\att{nro\_area}}.
+                        \item BCNF(\{\att{legajo}\} es superclave de 
+                            \ent{empleado} y está del lado izquierdo de su
+                            dependencia funcional).
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{contratado}(\pk{\fk{\att{legajo}}})
+            \begin{itemize}
+                \item \ent{contratado}.\att{legajo} debe estar en 
+                    \ent{profesional}.\att{legajo}.
+                \item Para \ent{contratado}.\att{legajo} == 
+                    \ent{profesional}.\att{legajo},
+                    \ent{profesional}.\att{tipo\_prof} = 1.
+                \item \CK{\att{legajo}}.
+                \item \PK{\att{legajo}}.
+                \item \FK{$\emptyset$}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item BCNF(no tiene dependencias funcionales no 
+                            triviales, por lo que toda dependencia cumple que
+                            la parte izquierda de la misma es superclave).
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{desarrolla}(\pk{\fk{\att{legajo}}}, 
+            \pk{\fk{\att{id\_tarea}}}, \att{f\_ing}, \att{f\_fin})
+            \begin{itemize}
+                \item \ent{desarrolla}.\att{legajo} debe estar en 
+                    \ent{contratado}.\att{legajo}.
+                \item \ent{desarrolla}.\att{id\_tarea} debe estar en 
+                    \ent{tarea}.\att{id\_tarea}.
+                \item \ent{desarrolla}.\att{f\_fin} $>$ 
+                    \ent{desarrolla}.\att{f\_ing}.
+                \item \CK{\att{legajo}, \att{id\_tarea}}
+                \item \PK{\att{legajo}, \att{id\_tarea}}
+                \item \FK{\att{legajo}), (\att{id\_tarea}}
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{legajo}, \att{id\_tarea}}{\att{f\_ing},
+                                \att{f\_fin}}.
+                        \item BCNF(\{\att{legajo}, \att{id\_tarea}\} es 
+                            superclave de \ent{desarrolla} y está del lado 
+                            izquierdo de su dependencia funcional).
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{auditoria}(\fk{\att{legajo}}, \fk{\att{id\_tarea}}, 
+            \fk{\att{nro\_audit}}, \att{desc}, \att{fecha}, \att{aprobada})
+            \begin{itemize}
+                \item \ent{Auditoria}.\att{id\_tarea} debe estar 
+                    \ent{Desarrolla}.\att{id\_tarea}.
+                \item \ent{Auditoria}.\att{legajo} debe estar en 
+                    \ent{Desarrolla}.\att{legajo}.
+                \item \ent{Desarrolla}.\att{(legajo, id\_tarea)} puede estar (o 
+                    no) en \ent{Auditoria}.\att{(legajo, id\_tarea)}
+                \item \ent{Auditoria}.\att{aprobada} es \{\texttt{true}, 
+                    \texttt{false}\}.
+                \item \CK{\att{legajo}, \att{id\_tarea}, \att{nro\_audit}}.
+                \item \PK{\att{legajo}, \att{id\_tarea}, \att{nro\_audit}}.
+                \item \FK{\att{legajo}, \att{id\_tarea}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{legajo}, \att{id\_tarea}, 
+                                \att{nro\_audit}}{\att{desc}, \att{fecha}, 
+                                \att{aprobada}}.
+                        \item BCNF(\{\att{legajo}, \att{id\_tarea}, 
+                        \att{nro\_audit}\} es superclave de \ent{auditoria} y 
+                            está del lado izquierdo de su dependencia 
+                            funcional).
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{tarea}(\pk{\att{id\_tarea}}, \att{desc}, 
+            \fk{\att{nro\_area}})
+            \begin{itemize}
+                \item \ent{tarea}.\att{nro\_area} debe estar en 
+                    \ent{area}.\att{nro\_area}.
+                \item \ent{area}.\att{nro\_area} puede estar (o no) en 
+                    \ent{tarea}.\att{nro\_area} (esto va en \ent{area}).
+                \item \CK{\att{id\_tarea}}.
+                \item \PK{\att{id\_tarea}}.
+                \item \FK{\att{nro\_tarea}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{id\_tarea}}{\att{desc}, \att{nro\_area}}.
+                        \item BCNF(\{\att{id\_tarea}\} es superclave de 
+                            \ent{tarea} y está del lado izquierdo de su 
+                            dependencia funcional.
+                    \end{itemize}
+            \end{itemize}
+
+
+        \item \ent{no\_profesional}(\pk{\fk{\att{legajo}}})
+            \begin{itemize}
+                \item \ent{no\_profesional}.\att{legajo} debe estar en 
+                    \ent{empleado}.\att{legajo}.
+                \item Para \ent{no\_profesional}.\att{legajo} == 
+                    \ent{empleado}.\att{legajo}, 
+                    \ent{empleado}.\att{tipo\_empl} = 1.
+                \item \ent{no\_profesional}.\att{legajo} debe estar en 
+                    \ent{trabaja\_en}.\att{legajo}.
+                \item \CK{\att{legajo}}.
+                \item \PK{\att{legajo}}.
+                \item \PK{$\emptyset$}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item BCNF(no tiene dependencias funcionales no 
+                            triviales, por lo que toda dependencia cumple que
+                            la parte izquierda de la misma es superclave).
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{trabaja\_en}(\pk{\fk{\att{legajo}}}, \pk{\fk{\att{nro\_area}}},
+            \fk{\att{id\_franja}})
+            \begin{itemize}
+                \item \ent{Trabaja\_en}.(\att{legajo}, \att{nro\_area}) debe 
+                    estar en \ent{No\_profesional}.\att{legajo}
+	            \item \ent{Trabaja\_en}.\att{nro\_area} debe estar en 
+                    \ent{Area}.\att{nro\_area}.
+                \item \ent{Trabaja\_en}.\att{id\_franja} debe estar en 
+                    \ent{Franja\_horaria}.\att{id\_franja} o ser nulo.
+                \item \ent{Empleado}.\att{id\_seg} de 
+                    \ent{trabaja\_en}.\att{legajo} $\geq$ 
+                    \ent{area}.\att{seguridad} de 
+                    \ent{trabaja\_en}.\att{nro\_area}
+                \item \ent{Trabaja\_en}.\att{legajo} == 
+                    \ent{Trabaja\_en}.\att{legajo} con \ent{Trabaja\_en} <> 
+                    \ent{Trabaja\_en}, entonces \ent{Trabaja\_en}.\att{franja\_horaria} <> \ent{Trabaja\_en}.\att{franja\_horaria}.
+                \item \CK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+                \item \PK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+                \item \FK{\att{legajo}), (\att{nro\_area}), (\att{id\_franja}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{legajo}, \att{id\_tarea}}{\att{id\_franja}}.
+                        \item \fmin{\att{legajo}, \att{id\_franja}}{\att{nro\_area}}.
+                        \item BCNF(\{\att{legajo}, \att{nro\_area}\} y 
+                            \{\att{legajo}, \att{id\_franja}\} son superclave de 
+                            \ent{trabaja\_en} y ambas están del lado izquierdo 
+                            de su dependencia funcional)
+                    \end{itemize}
+            \end{itemize}
+
+
+        \item \ent{franja\_horaria}(\pk{\att{id\_franja}}, \att{hora\_entrada},
+            \att{hora\_salida})
+            \begin{itemize}
+                \item \ent{franja\_horaria}.\att{id\_franja} debe estar en 
+                    \ent{trabaja\_en}.\att{id\_franja}.
+                \item \ent{franja\_horaria}.\att{hora\_entrada} < 
+                    \ent{franja\_horaria}.\att{hora\_salida}.
+                \item \CK{\att{id\_franja}\}, (\att{hora\_entrada}, 
+                        \att{hora\_salida}}.
+                \item \PK{\att{id\_franja}}
+                \item \FK{$\emptyset$}
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{hora\_entrada}, 
+                                \att{hora\_salida}}{\att{id\_franja}}.
+                        \item \fmin{\att{id\_franja}}{\att{hora\_entrada}, 
+                                \att{hora\_salida}}.
+                        \item BCNF(\{\att{hora\_entrada}, \att{hora\_salida}\}
+                            e \att{id\_franja} son superclave de 
+                            \ent{franja\_horaria} y ambas están del lado 
+                            izquierdo de su dependencia funcional.
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{jerarquico}(\pk{\fk{\att{legajo}}})
+            \begin{itemize}
+                \item \ent{jerarquico}.\att{legajo} debe estar en
+                    \ent{empleado}.\att{legajo}.
+                \item Para \ent{jerarquico}.\att{legajo} == 
+                    \ent{empleado}.\att{legajo}, \ent{empleado}.\att{tipo\_empl}
+                    = 2.
+                \item \ent{jerarquico}.\att{legajo} puede no estar en 
+                    \ent{ocupa}.\att{legajo}.
+                \item \CK{\att{legajo}}.
+                \item \PK{\att{legajo}}.
+                \item \FK{$\emptyset$}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item BCNF(no tiene dependencias funcionales no 
+                            triviales, por lo que toda dependencia cumple que la
+                            parte izquierda de la misma es superclave)
+                    \end{itemize}
+            \end{itemize}
+
+        \item \ent{direccion}(\pk{\att{id\_dir}}, \att{f\_ini}, \att{f\_fin},
+                              \fk{\att{nro\_area}})
+            \begin{itemize}
+                \item \ent{direccion}.\att{id\_dir} puede no estar en 
+                    \ent{ocupa}.\att{id\_dir}.
+                \item \ent{direccion}.\att{nro\_area} debe estar en 
+                    \ent{area}.\att{nro\_area}.
+                \item \CK{\att{id\_dir}}.
+                \item \PK{\att{id\_dir}}.
+                \item \FK{\att{nro\_area}}.
+            \end{itemize}
+
+        \item \ent{ocupa}(\pk{\fk{\att{legajo}}}, \pk{\fk{\att{id\_dir}}})
+            \begin{itemize}
+                \item \ent{ocupa}.\att{legajo} debe estar en 
+                    \ent{jerarquico}.\att{legajo}.
+                \item \ent{ocupa}.\att{id\_dir} debe estar en 
+                    \ent{direccion}.\att{id\_dir}.
+                \item \CK{(\att{legajo}, \att{id\_dir})}.
+                \item \PK{(\att{legajo}, \att{id\_dir})}.
+                \item \FK{\att{legajo}, \att{id\_dir}}.
+            \end{itemize}
+
+        \item \ent{area}(\pk{\att{nro\_area}}, \att{nombre}, 
+            \att{es\_restringida})
+            \begin{itemize}
+                \item \ent{area}.\att{nro\_area} puede estar (o no) en 
+                    \ent{direccion}.\att{nro\_area}.
+                \item \ent{area}.\att{nro\_area} puede estar (o no) en 
+                    \ent{tarea}.\att{nro\_area}.
+                \item \ent{area}.\att{nro\_area} puede estar (o no) en 
+                    \ent{trabaja\_en}.\att{nro\_area}.
+                \item \ent{area}.\att{nro\_area} puede estar (o no) en 
+                    \ent{planta\_permanente}.\att{nro\_area}.
+                \item \ent{area}.\att{es\_restringida} es \{\texttt{true}, 
+                        \texttt{false}\}.
+                \item \CK{\att{nro\_area}}.
+                \item \PK{\att{nro\_area}}.
+                \item \FK{$\emptyset$}.
+            \end{itemize}
+
+
+        \item \ent{area\_restringida}(\pk{\fk{\att{nro\_area}}}, \fk{\att{id\_seg}})
+            \begin{itemize}
+                \item \ent{area\_restringida}.\att{nro\_area} debe estar en 
+                    \ent{area}.\att{nro\_area}.
+                \item \ent{area\_restringida}.\att{id\_seg} debe estar en 
+                    \ent{seguridad}.\att{id\_seg}.
+                \item Para \ent{empleado}.\att{legajo} == 
+                    \ent{area}.\att{legajo} y \ent{area}.\att{nro\_area} en 
+                    \ent{area\_restringida}.\att{nro\_area},
+                    \ent{empleado}.\att{id\_seg} $\geq$ 
+                    \ent{area\_restringida}.\att{id\_seg}.
+                \item \CK{\att{nro\_area}}.
+                \item \PK{\att{nro\_area}}.
+                \item \FK{\att{nro\_area}, \att{id\_seg}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{nro\_area}}{\att{seguridad}}.
+                        \item BCNF(\{\att{nro\_area}\} es superclave de 
+                            \ent{area\_restringida} y está del lado izquierdo
+                            de su dependencia funcional.
+                    \end{itemize}
+            \end{itemize}
+
+
+        \item \ent{evento}(\pk{\fk{\att{nro\_area}}}, \pk{\att{nro\_evento}}, 
+            \att{desc}, \att{fecha})
+            \begin{itemize}
+                \item \ent{evento}.\att{nro\_area} debe estar en 
+                    \ent{area}.\att{nro\_area}.
+                \item \ent{area}.\att{nro\_area} puede estar (o no) en 
+                    \ent{evento}.\att{nro\_area}.
+                \item \CK{\att{nro\_evento}}.
+                \item \PK{\att{nro\_evento}}.
+                \item \FK{\att{nro\_area}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{nro\_area}, \att{nro\_evento}}
+                            {\att{desc}, \att{fecha}}.
+                        \item BCNF(\{\att{nro\_area}, \att{nro\_evento}\} es
+                            superclave de \ent{evento} y está del lado izquierdo
+                            de su dependencia funcional.
+                    \end{itemize}
+            \end{itemize}
+
+
+        \item \ent{entrada\_salida}(\pk{\fk{\att{legajo}}}, 
+            \pk{\fk{\att{nro\_area}}}, \att{fecha}, \att{entrada}, 
+            \att{autorizado})
+            \begin{itemize}
+                \item \ent{entrada\_salida}.\att{legajo} debe estar en
+                    \ent{empleado}.\att{legajo}.
+                \item \ent{entrada\_salida}.\att{nro\_area} debe estar en 
+                    \ent{area\_restringida}.\att{nro\_area}.
+                \item Si \ent{entrada\_salida}.\att{legajo} está en 
+                    \ent{planta\_permanente}.\att{legajo} entonces 
+                    \att{legajo} debe determinar funcionalmente a \att{nro\_area}.
+                \item \CK{\att{legajo}, \att{nro\_area}}.
+                \item \PK{\att{legajo}, \att{nro\_area}}.
+                \item \FK{\att{legajo}), (\att{nro\_area}}.
+            \end{itemize}
+
+        \item \ent{durante}(\pk{\fk{\att{legajo}}}, \pk{\fk{\att{nro\_area}}}, \pk{\fk{\att{id\_franja}}})
+            \begin{itemize}
+                \item (\ent{durante}.\att{legajo}, 
+                    \ent{durante}.\att{nro\_area}) puede no estar en 
+                    (\ent{trabaja\_en}.\att{legajo}, 
+                    \ent{trabaja\_en}.\att{nro\_area}).
+                \item \ent{durante}.\att{id\_franja} debe estar en 
+                    \ent{franja\_horaria}.\att{id\_franja}.
+                \item \CK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+                \item \PK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+                \item \FK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+            \end{itemize}
+\end{itemize}
