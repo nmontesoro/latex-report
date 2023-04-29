@@ -453,7 +453,7 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
             \end{itemize}
 
 
-        \item \ent{evento}(\pk{\fk{\att{nro\_area}}}, \pk{\att{nro\_evento}}, 
+        \item \ent{evento}(\fk{\att{nro\_area}}, \pk{\att{nro\_evento}}, 
             \att{desc}, \att{fecha})
             \begin{itemize}
                 \item \ent{evento}.\att{nro\_area} debe estar en 
@@ -465,11 +465,11 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                 \item \FK{\att{nro\_area}}.
                 \item Normalización:
                     \begin{itemize}
-                        \item \fmin{\att{nro\_area}, \att{nro\_evento}}
-                            {\att{desc}, \att{fecha}}.
-                        \item BCNF(\{\att{nro\_area}, \att{nro\_evento}\} es
+                        \item \fmin{\att{nro\_evento}}
+                            {\att{nro\_area}, \att{desc}, \att{fecha}}.
+                        \item BCNF(\att{nro\_evento} es
                             superclave de \ent{evento} y está del lado izquierdo
-                            de su dependencia funcional.
+                            de su dependencia funcional).
                     \end{itemize}
             \end{itemize}
 
