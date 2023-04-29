@@ -33,12 +33,27 @@ Asumimos las siguientes hipótesis:
 Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
 
 \begin{itemize}
-    \item Todo empleado debe ser jerarquico o profesional o no profesional. A su
+    \item Todo empleado debe ser jerárquico, profesional o no profesional. A su
         vez entre jerárquico, profesional y no profesional se debe obtener a 
         todos los empleados.
     \item Todo profesional debe ser contratado o de planta permanente. A su vez 
         entre planta permanente y contratado se debe obtener a todos los 
         empleados.
+    \item Los empleados que acceden a áreas restringidas deberán estar 
+        capacitados para un nivel mayor o igual al del área.
+    \item Dirección sólo puede tener empleados jerárquicos.
+    \item Desarrolla sólo puede tener empleados contratados.
+    \item Actúa\_en solo puede tener empleados de planta\_permanente.
+    \item Toda área restringida es también un área.
+    \item El nivel de seguridad de un área restringida no puede ser bajo.
+    \item Sólo los profesionales tienen especialidades.
+    \item Las direcciones de una misma área deben tener períodos que no se 
+        solapen.
+    \item Las tareas que desarrolla un contratado no pueden solaparse en 
+        período.
+    \item Un no\_profesional no puede ocupar dos franjas horarias que se solapen
+        en periodo.
+    \item Toda fecha se aloja como un \textit{timestamp}.
 \end{itemize}
 
 \section{Modelo lógico-relacional}
