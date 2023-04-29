@@ -218,7 +218,7 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
             \end{itemize}
 
         \item \ent{auditoria}(\fk{\att{legajo}}, \fk{\att{id\_tarea}}, 
-            \fk{\att{nro\_audit}}, \att{desc}, \att{fecha}, \att{aprobada})
+            \pk{\att{nro\_audit}}, \att{desc}, \att{fecha}, \att{aprobada})
             \begin{itemize}
                 \item \ent{Auditoria}.\att{id\_tarea} debe estar 
                     \ent{Desarrolla}.\att{id\_tarea}.
