@@ -374,6 +374,15 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                         \att{id\_area}}.
                 \item \PK{\att{id\_dir}}.
                 \item \FK{\att{nro\_area}}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{(\att{id\_dir}), 
+                                (\att{f\_ini}, \att{f\_fin}, \att{nro\_area})}
+                            {(\att{f\_ini}, \att{f\_fin}, \att{nro\_area}),
+                                (\att{id\_dir})}.
+                        \item Ambos elementos de la izquierda son superclave, 
+                            por lo que están en BCNF.
+                    \end{itemize}
             \end{itemize}
 
         \item \ent{ocupa}(\pk{\fk{\att{legajo}}}, \pk{\fk{\att{id\_dir}}})
