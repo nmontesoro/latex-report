@@ -296,9 +296,11 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                     \ent{trabaja\_en}.\att{legajo} $\geq$ 
                     \ent{area}.\att{seguridad} de 
                     \ent{trabaja\_en}.\att{nro\_area}
-                \item \ent{Trabaja\_en}.\att{legajo} == 
-                    \ent{Trabaja\_en}.\att{legajo} con \ent{Trabaja\_en} <> 
-                    \ent{Trabaja\_en}, entonces \ent{Trabaja\_en}.\att{franja\_horaria} <> \ent{Trabaja\_en}.\att{franja\_horaria}.
+                \item Si \ent{Trabaja\_en}.\att{legajo} $=$
+                    \ent{Trabaja\_en}.\att{legajo} con \ent{Trabaja\_en} $\neq$
+                    \ent{Trabaja\_en}, $\Longrightarrow$ 
+                    \ent{Trabaja\_en}.\att{franja\_horaria} $\neq$ 
+                    \ent{Trabaja\_en}.\att{franja\_horaria}.
                 \item \CK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
                 \item \PK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
                 \item \FK{\att{legajo}), (\att{nro\_area}), (\att{id\_franja}}.
