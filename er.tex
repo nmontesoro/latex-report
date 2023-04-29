@@ -409,6 +409,13 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                 \item \CK{\att{nro\_area}}.
                 \item \PK{\att{nro\_area}}.
                 \item \FK{$\emptyset$}.
+                \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{nro\_area}}{\att{nombre}, 
+                                \att{es\_restringida}}
+                        \item \att{nro\_area} es superclave y esta a la 
+                            izquierda, por lo que está en BCNF.
+                    \end{itemize}
             \end{itemize}
 
 
