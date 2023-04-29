@@ -54,6 +54,10 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
     \item Un no\_profesional no puede ocupar dos franjas horarias que se solapen
         en periodo.
     \item Toda fecha se aloja como un \textit{timestamp}.
+    \item En ningún atributo es posible asignar una fecha posterior a la fecha
+        de carga de datos.
+    \item No es posible que se produzca superposición entre dos períodos 
+        temporales del mismo tipo (fechas de inicio y finalización).
 \end{itemize}
 
 \section{Modelo lógico-relacional}
