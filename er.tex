@@ -80,7 +80,7 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                 \ent{Seguridad}.\att{Id\_seg}.
             \item \ent{Empleado}.\att{Id\_seg} no puede ser nulo.
             \item \ent{Empleado}.\att{Tipo\_empl} es \{0 (\ent{profesional}), 1 
-                    (\ent{no\_profesional}), 2 (\ent{jerarquico})\}.
+                    (\ent{no\_profesional}), 2 (\ent{jerarqui\-co})\}.
             \item \ent{Empleado}.\att{Tipo\_empl} no puede ser nulo.
             \item \CK{\att{legajo}}.
             \item \PK{\att{legajo}}.
@@ -339,7 +339,7 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                         \item \fmin{\att{id\_franja}}{\att{hora\_entrada}, 
                                 \att{hora\_salida}}.
                         \item BCNF(\{\att{hora\_entrada}, \att{hora\_salida}\}
-                            e \att{id\_franja} son superclave de 
+                            e \att{id\_franja} son superclave de \-
                             \ent{franja\_horaria} y ambas están del lado 
                             izquierdo de su dependencia funcional.
                     \end{itemize}
@@ -440,7 +440,7 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                 \item \ent{area\_restringida}.\att{id\_seg} debe estar en 
                     \ent{seguridad}.\att{id\_seg}.
                 \item Para \ent{empleado}.\att{legajo} == 
-                    \ent{area}.\att{legajo} y \ent{area}.\att{nro\_area} en 
+                    \ent{area}.\att{legajo} y \ent{area}.\att{nro\_area} en \-
                     \ent{area\_restringida}.\att{nro\_area},
                     \ent{empleado}.\att{id\_seg} $\geq$ 
                     \ent{area\_restringida}.\att{id\_seg}.
