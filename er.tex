@@ -458,7 +458,7 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
 
 
         \item \ent{entrada\_salida}(\pk{\fk{\att{legajo}}}, 
-            \pk{\fk{\att{nro\_area}}}, \att{fecha}, \att{entrada}, 
+            \pk{\fk{\att{nro\_area}}}, \att{fecha}, \att{es\_entrada}, 
             \att{autorizado})
             \begin{itemize}
                 \item \ent{entrada\_salida}.\att{legajo} debe estar en
@@ -468,6 +468,8 @@ Las restricciones sobre el esquema de la fig. \ref{fig:der} son las siguientes:
                 \item Si \ent{entrada\_salida}.\att{legajo} está en 
                     \ent{planta\_permanente}.\att{legajo} entonces 
                     \att{legajo} debe determinar funcionalmente a \att{nro\_area}.
+                \item \ent{entrada\_salida}.\att{es\_entrada} es \{\texttt{true}, 
+                    \texttt{false}\}.
                 \item \CK{\att{legajo}, \att{nro\_area}}.
                 \item \PK{\att{legajo}, \att{nro\_area}}.
                 \item \FK{\att{legajo}), (\att{nro\_area}}.
