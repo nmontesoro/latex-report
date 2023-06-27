@@ -161,7 +161,7 @@ indique lo contrario.
               \item \att{id\_seg} debe estar en \ent{seguridad}.\att{id\_seg}.
               \item \att{legajo\_dir} debe estar en \ent{empleado}.\att{legajo}
                   y el empleado al que hace referencia debe ser de tipo 
-                  jerárquico.
+                  \verb|jerarquico|.
               \item \CK{\att{nro\_area}}.
               \item \PK{\att{nro\_area}}.
               \item \FK{\att{Id\_seg}), (\att{Legajo\_dir}}.
@@ -223,7 +223,12 @@ indique lo contrario.
     \ent{trabaja\_en}(\pk{\fk{\att{legajo}}, \fk{\att{nro\_area}}})
 
     \begin{itemize}
-        \item \att{legajo} debe estar en \ent{empleado}.\att{legajo}.
+        \item \att{legajo} debe estar en \ent{empleado}.\att{legajo} y el 
+            empleado al que hace referencia debe ser de tipo 
+            \verb|no_profesional|. Además, el nivel de seguridad para el que se
+            capacitó al empleado
+            debe ser igual o mayor que el nivel de seguridad del área donde
+            trabaja.
         \item \att{nro\_area} debe estar en \ent{area}.\att{nro\_area}.
         \item \CK{\att{legajo}, \att{nro\_area}}.
         \item \PK{\att{legajo}, \att{nro\_area}}.
@@ -264,21 +269,27 @@ indique lo contrario.
 \subsubsection{Contrato}
 
     \ent{contrato}(\pk{\att{id\_contrato}}, \att{f\_ini}, \att{f\_fin},
-        \fk{\att{id\_tarea}}, \fk{\att{nro\_area}})
+        \fk{\att{id\_tarea}}, \fk{\att{nro\_area}}, \fk{\att{legajo}})
 
     \begin{itemize}
         \item \att{id\_tarea} debe estar en \ent{tarea}.\att{id\_tarea}.
         \item \att{nro\_area} debe estar en \ent{area}.\att{nro\_area}.
+        \item \att{legajo} debe estar en \ent{empleado}.\att{legajo}. El 
+            empleado al que hace referencia debe ser de tipo \verb|profesional|,
+            y el tipo de profesional debe ser \verb|contratado|. Además, el 
+            nivel de seguridad para el que se capacitó al empleado debe ser 
+            mayor o igual que el nivel de seguridad del área para la cual se lo
+            contrata.
         \item La fecha de finalización del contrato debe ser posterior a la 
             fecha de inicio (\att{f\_fin} > \att{f\_ini}).
         \item \CK{\att{id\_contrato}}
         \item \PK{\att{id\_contrato}}
-        \item \FK{\att{id\_tarea}), (\att{nro\_area}}
+        \item \FK{\att{id\_tarea}), (\att{nro\_area}), (\att{legajo}}
 
         \item Normalización:
 
             \begin{itemize}
-                \item \fmin{\att{id\_contrato}}{\att{f\_ini}, \att{f\_fin}, \att{id\_tarea}, \att{nro\_area}}.
+                \item \fmin{\att{id\_contrato}}{\att{f\_ini}, \att{f\_fin}, \att{id\_tarea}, \att{nro\_area}, \att{legajo}}.
 
                 \item (\att{id\_contrato}) es superclave y está a la izquierda, 
                     por lo que está en BCNF.
@@ -294,6 +305,8 @@ indique lo contrario.
               \item \att{id\_contrato} debe estar en \ent{contrato}.\att{id\_contrato}.
               \item \ent{Auditoria}.\att{aprobada} es \{\texttt{true},
                     \texttt{false}\}.
+              \item La fecha de la auditoría (\att{fecha}) debe estar dentro del
+                  período del contrato al que hace referencia \att{id\_contrato}.
               \item \CK{\att{nro\_audit}, \att{id\_contrato}}.
               \item \PK{\att{nro\_audit}, \att{id\_contrato}}.
               \item \FK{\att{id\_contrato}}.
