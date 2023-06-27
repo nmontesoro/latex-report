@@ -1,0 +1,305 @@
+\section{Contenidos de la entrega final}
+
+\subsection{Modelo Entidad-Relación}
+
+El esquema por el que nos decantamos es el de la fig. \ref{fig:der-2}. Los 
+cambios principales son los siguientes:
+
+\begin{itemize}
+
+    \item Eliminamos la entidad \verb|DIRECCION|. Fue reemplazada por la 
+    relación \verb|DIRIGE| con los atributos necesarios.
+
+    \item Reemplazamos la agregación entre \verb|CONTRATADO| y \verb|TAREA|.
+    La forma anterior tenía varias desventajas, entre ellas que no era posible
+    determinar para qué área fue contratado cada empleado.
+
+    \item Nos resultó más fácil de implementar las áreas sin distingur entre
+    aquellas que son restringidas y las que no lo son. Ver más detalles en la
+    sección \ref{sec:implementacion}.
+
+    \item Más entidades tienen participaciones parciales en las relaciones. 
+    Esto fue hecho principalmente para facilitar la carga de datos.
+
+\end{itemize}
+
+\begin{landscape}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[height=0.95\textheight]{/home/naza/Documents/drawing4.pdf}
+        \caption{Diagrama Entidad-Relación final}
+        \label{fig:der-2}
+    \end{figure}
+\end{landscape}
+
+\subsection{Modelo lógico-relacional}
+
+\textbf{Observación:} Ninguno de los atributos puede ser nulo, salvo que se 
+indique lo contrario.
+
+\subsubsection{Especialidad}
+
+    \ent{especialidad}(\pk{\att{Id\_esp}}, \att{descripcion})
+
+    \begin{itemize}
+        \item \CK{\att{id\_esp}), (\att{descripcion}}.
+        \item \PK{\att{id\_esp}}
+        \item FK = $\emptyset$
+
+        \item Normalización:
+            
+            \begin{itemize}
+                \item \fmin{\att{id\_esp}}{\att{descripcion}}.
+                    
+                \item \att{id\_esp} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Franja horaria}
+
+    \ent{franja\_horaria}(\pk{\att{Id\_franja}}, \att{hora\_entrada}, \att{hora\_salida})
+
+    \begin{itemize}
+        \item \att{hora\_salida} debe ser mayor que \att{hora\_entrada}.
+        \item \CK{\att{id\_franja}), (\att{hora\_entrada}, \att{hora\_salida}}.
+        \item \PK{\att{id\_franja}}
+        \item FK = $\emptyset$
+
+        \item Normalización:
+            
+            \begin{itemize}
+                \item \fmin{\att{id\_franja}}{\att{hora\_entrada}, \att{hora\_salida}}.
+                    
+                \item \att{id\_franja} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Seguridad}
+
+    \ent{seguridad}(\pk{\att{id\_seg}}, \att{descripcion}, \att{nivel})
+
+    \begin{itemize}
+        \item \att{nivel} no puede ser nulo.
+        \item \CK{\att{id\_seg}), (\att{descripcion}}.
+        \item \PK{\att{id\_seg}}.
+        \item FK = $\emptyset$.
+
+        \item Normalización:
+            \begin{itemize}
+                \item \fmin{\att{id\_seg}}{\att{descripcion}, \att{nivel}}.
+                \item \att{id\_seg} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Tarea}
+
+    \ent{tarea}(\pk{\att{id\_tarea}}, \att{descripcion})
+
+
+    \begin{itemize}
+        \item \CK{\att{id\_tarea}), (\att{descripcion}}.
+        \item \PK{\att{id\_tarea}}
+        \item FK = $\emptyset$
+
+        \item Normalización:
+            
+            \begin{itemize}
+                \item \fmin{\att{id\_tarea}}{\att{descripcion}}.
+                    
+                \item \att{id\_tarea} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+
+\subsubsection{Empleado}
+
+    \ent{empleado}(\pk{\att{legajo}}, \att{nombre}, \att{apellido}, \att{f\_nac},
+        \att{nro\_tel}, \att{huella}, \att{pwd}, \fk{\att{id\_seg}},
+        \att{tipo\_empl}, \att{tipo\_prof}, \fk{\att{id\_esp}})
+
+    \begin{itemize}
+        \item \att{id\_seg} debe estar en \ent{seguridad}.\att{id\_seg}.
+        \item \att{id\_esp} debe estar en \ent{especialidad}.\att{id\_esp}.
+        \item \att{tipo\_empl} debe ser \verb|profesional|, \verb|no_profesional|
+            o \verb|jerarquico|.
+        \item \att{tipo\_prof} debe ser \verb|planta_permanente| o 
+            \verb|contratado|.
+        \item Si \att{tipo\_empl} es \verb|profesional| entonces 
+            \att{tipo\_prof} e \att{id\_esp} no pueden ser nulos.
+            En caso contrario, deben serlo.
+        \item \CK{\att{legajo}), (\att{huella}}.
+        \item \PK{\att{legajo}}.
+        \item \FK{\att{id\_seg}), (\att{id\_esp}}.
+
+        \item Normalización:
+            
+            \begin{itemize}
+
+                \item \fmin{\att{legajo}}{\att{nombre}, \att{apellido}, 
+                        \att{f\_nac}, \att{nro\_tel}, \att{huella},
+                        \att{pwd}, \att{id\_seg}, \att{tipo\_empl},
+                        \att{tipo\_prof}, \att{id\_esp}}.
+                    
+                \item \att{legajo} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+
+\subsubsection{Área}
+    \ent{area}(\pk{\att{nro\_area}}, \att{nombre}, \att{F\_ini\_dir}, \fk{\att{id\_seg}}, 
+        \fk{\att{Legajo\_dir}})
+
+          \begin{itemize}
+              \item \att{id\_seg} debe estar en \ent{seguridad}.\att{id\_seg}.
+              \item \att{legajo\_dir} debe estar en \ent{empleado}.\att{legajo}
+                  y el empleado al que hace referencia debe ser de tipo 
+                  jerárquico.
+              \item \CK{\att{nro\_area}}.
+              \item \PK{\att{nro\_area}}.
+              \item \FK{\att{Id\_seg}), (\att{Legajo\_dir}}.
+              \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{nro\_area}}{\att{nombre}, \att{F\_ini\_dir}, \att{id\_seg}, \att{Legajo\_dir}}
+                        \item \att{nro\_area} es superclave y esta a la
+                              izquierda, por lo que está en BCNF.
+                    \end{itemize}
+          \end{itemize}
+
+\subsubsection{Evento}
+
+    \ent{evento}(\pk{\att{nro\_evento}, \fk{\att{nro\_area}}}, \att{descripcion},
+        \att{fecha})
+
+    \begin{itemize}
+        \item \att{nro\_area} debe estar en \ent{area}.\att{nro\_area}.
+        \item \CK{\att{nro\_evento}, \att{nro\_area}}.
+        \item \PK{\att{nro\_evento}, \att{nro\_area}}.
+        \item \FK{\att{nro\_area}}.
+
+        \item Normalización:
+
+            \begin{itemize}
+                \item \fmin{\att{nro\_evento}, \att{nro\_area}}{\att{descripcion}, \att{fecha}}
+
+                \item (\att{nro\_evento}, \att{nro\_area}) es superclave y está
+                    a la izquierda, por lo que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Entradas/salidas}
+
+    \ent{entradas\_salidas}(\pk{\fk{\att{legajo}}, \fk{\att{nro\_area}}, \att{fecha}}, \att{es\_entrada}, \att{autorizado})
+
+    \begin{itemize}
+        \item Tanto \att{es\_entrada} como \att{autorizado} son \verb|true| o 
+            \verb|false|.
+        \item \att{fecha} incluye la hora.
+        \item \att{legajo} debe estar en \ent{empleado}.\att{legajo}.
+        \item \att{nro\_area} debe estar en \ent{area}.\att{nro\_area}.
+        \item \CK{\att{legajo}, \att{nro\_area}, \att{fecha}}.
+        \item \PK{\att{legajo}, \att{nro\_area}, \att{fecha}}.
+        \item \FK{\att{legajo}), (\att{nro\_area}}.
+
+        \item Normalización:
+
+            \begin{itemize}
+                \item \fmin{\att{legajo}, \att{nro\_area}, \att{fecha}}{\att{es\_entrada}, \att{autorizado}}.
+
+                \item (\att{legajo}, \att{nro\_area}, \att{fecha}) es superclave 
+                    y está a la izquierda, por lo que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Trabaja en}
+
+    \ent{trabaja\_en}(\pk{\fk{\att{legajo}}, \fk{\att{nro\_area}}})
+
+    \begin{itemize}
+        \item \att{legajo} debe estar en \ent{empleado}.\att{legajo}.
+        \item \att{nro\_area} debe estar en \ent{area}.\att{nro\_area}.
+        \item \CK{\att{legajo}, \att{nro\_area}}.
+        \item \PK{\att{legajo}, \att{nro\_area}}.
+        \item \FK{\att{legajo}), (\att{nro\_area}}.
+
+        \item Normalización:
+
+            \begin{itemize}
+                \item \fmin{\att{legajo}, \att{nro\_area}}{}
+                    
+                \item (\att{legajo}, \att{nro\_area}) es superclave y está a la
+                    izquierda, por lo que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Durante}
+
+    \ent{durante}(\pk{\fk{\att{legajo}, \att{nro\_area}}, \fk{\att{id\_franja}}})
+
+    \begin{itemize}
+        \item (\att{legajo}, \att{nro\_area}) debe estar en \ent{trabaja\_en}.(\att{legajo}, \att{nro\_area}).
+        \item \att{id\_franja} debe estar en \ent{franja\_horaria}.\att{id\_franja}.
+
+        \item \CK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+        \item \PK{\att{legajo}, \att{nro\_area}, \att{id\_franja}}.
+        \item \FK{\att{legajo}, \att{nro\_area}), (\att{id\_franja}}.
+
+        \item Normalización:
+
+            \begin{itemize}
+                \item \fmin{\att{legajo}, \att{nro\_area}, \att{id\_franja}}{}.
+
+                \item (\att{legajo}, \att{nro\_area}, \att{id\_franja}) es 
+                    superclave y está a la izquierda, por lo que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Contrato}
+
+    \ent{contrato}(\pk{\att{id\_contrato}}, \att{f\_ini}, \att{f\_fin},
+        \fk{\att{id\_tarea}}, \fk{\att{nro\_area}})
+
+    \begin{itemize}
+        \item \att{id\_tarea} debe estar en \ent{tarea}.\att{id\_tarea}.
+        \item \att{nro\_area} debe estar en \ent{area}.\att{nro\_area}.
+        \item La fecha de finalización del contrato debe ser posterior a la 
+            fecha de inicio (\att{f\_fin} > \att{f\_ini}).
+        \item \CK{\att{id\_contrato}}
+        \item \PK{\att{id\_contrato}}
+        \item \FK{\att{id\_tarea}), (\att{nro\_area}}
+
+        \item Normalización:
+
+            \begin{itemize}
+                \item \fmin{\att{id\_contrato}}{\att{f\_ini}, \att{f\_fin}, \att{id\_tarea}, \att{nro\_area}}.
+
+                \item (\att{id\_contrato}) es superclave y está a la izquierda, 
+                    por lo que está en BCNF.
+            \end{itemize}
+    \end{itemize}
+
+
+\subsubsection{Auditoría}
+    \ent{auditoria}(\pk{\att{nro\_audit}}, \fk{\att{id\_contrato}}, 
+          \att{descripcion}, \att{fecha}, \att{aprobado})
+
+          \begin{itemize}
+              \item \att{id\_contrato} debe estar en \ent{contrato}.\att{id\_contrato}.
+              \item \ent{Auditoria}.\att{aprobada} es \{\texttt{true},
+                    \texttt{false}\}.
+              \item \CK{\att{nro\_audit}, \att{id\_contrato}}.
+              \item \PK{\att{nro\_audit}, \att{id\_contrato}}.
+              \item \FK{\att{id\_contrato}}.
+              \item Normalización:
+                    \begin{itemize}
+                        \item \fmin{\att{nro\_audit}, \att{id\_contrato}}{\att{descripcion}, \att{fecha}, \att{aprobado}}.
+                        \item BCNF(\{\att{nro\_audit}, \att{id\_contrato}\}es superclave de
+                              \ent{auditoria} y está del lado izquierdo de su dependencia funcional).
+                    \end{itemize}
+          \end{itemize}
+
+
