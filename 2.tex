@@ -53,8 +53,11 @@ indique lo contrario.
             
             \begin{itemize}
                 \item \fmin{\att{id\_esp}}{\att{descripcion}}.
+                \item \fmin{\att{descripcion}}{\att{id\_esp}}.
                     
                 \item \att{id\_esp} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+                \item \att{descripcion} es superclave y está a la izquierda, por lo
                     que está en BCNF.
             \end{itemize}
     \end{itemize}
@@ -73,8 +76,13 @@ indique lo contrario.
             
             \begin{itemize}
                 \item \fmin{\att{id\_franja}}{\att{hora\_entrada}, \att{hora\_salida}}.
+                \item \fmin{\att{hora\_entrada}, \att{hora\_salida}}{\att{id\_franja}}.
                     
                 \item \att{id\_franja} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+
+                \item (\att{hora\_entrada}, \att{hora\_salida}) es superclave y
+                    está a la izquierda, por lo
                     que está en BCNF.
             \end{itemize}
     \end{itemize}
@@ -84,7 +92,6 @@ indique lo contrario.
     \ent{seguridad}(\pk{\att{id\_seg}}, \att{descripcion}, \att{nivel})
 
     \begin{itemize}
-        \item \att{nivel} no puede ser nulo.
         \item \CK{\att{id\_seg}), (\att{descripcion}}.
         \item \PK{\att{id\_seg}}.
         \item FK = $\emptyset$.
@@ -92,7 +99,10 @@ indique lo contrario.
         \item Normalización:
             \begin{itemize}
                 \item \fmin{\att{id\_seg}}{\att{descripcion}, \att{nivel}}.
+                \item \fmin{\att{descripcion}}{\att{id\_seg}, \att{nivel}}.
                 \item \att{id\_seg} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+                \item \att{descripcion} es superclave y está a la izquierda, por lo
                     que está en BCNF.
             \end{itemize}
     \end{itemize}
@@ -111,8 +121,11 @@ indique lo contrario.
             
             \begin{itemize}
                 \item \fmin{\att{id\_tarea}}{\att{descripcion}}.
+                \item \fmin{\att{descripcion}}{\att{id\_tarea}}.
                     
                 \item \att{id\_tarea} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+                \item \att{descripcion} es superclave y está a la izquierda, por lo
                     que está en BCNF.
             \end{itemize}
     \end{itemize}
@@ -146,8 +159,15 @@ indique lo contrario.
                         \att{f\_nac}, \att{nro\_tel}, \att{huella},
                         \att{pwd}, \att{id\_seg}, \att{tipo\_empl},
                         \att{tipo\_prof}, \att{id\_esp}}.
+
+                \item \fmin{\att{huella}}{\att{legajo}, \att{nombre}, \att{apellido}, 
+                        \att{f\_nac}, \att{nro\_tel},
+                        \att{pwd}, \att{id\_seg}, \att{tipo\_empl},
+                        \att{tipo\_prof}, \att{id\_esp}}.
                     
                 \item \att{legajo} es superclave y está a la izquierda, por lo
+                    que está en BCNF.
+                \item \att{huella} es superclave y está a la izquierda, por lo
                     que está en BCNF.
             \end{itemize}
     \end{itemize}
@@ -237,10 +257,9 @@ indique lo contrario.
         \item Normalización:
 
             \begin{itemize}
-                \item \fmin{\att{legajo}, \att{nro\_area}}{}
-                    
-                \item (\att{legajo}, \att{nro\_area}) es superclave y está a la
-                    izquierda, por lo que está en BCNF.
+                \item BCNF (no tiene dependencias funcionales no triviales, por
+                    lo que toda dependencia cumple que la parte izquierda de la
+                    misma es superclave).
             \end{itemize}
     \end{itemize}
 
@@ -259,10 +278,9 @@ indique lo contrario.
         \item Normalización:
 
             \begin{itemize}
-                \item \fmin{\att{legajo}, \att{nro\_area}, \att{id\_franja}}{}.
-
-                \item (\att{legajo}, \att{nro\_area}, \att{id\_franja}) es 
-                    superclave y está a la izquierda, por lo que está en BCNF.
+                \item BCNF (no tiene dependencias funcionales no triviales, por
+                    lo que toda dependencia cumple que la parte izquierda de la
+                    misma es superclave).
             \end{itemize}
     \end{itemize}
 
@@ -313,10 +331,15 @@ indique lo contrario.
               \item Normalización:
                     \begin{itemize}
                         \item \fmin{\att{nro\_audit}, \att{id\_contrato}}{\att{descripcion}, \att{fecha}, \att{aprobado}}.
-                        \item BCNF(\{\att{nro\_audit}, \att{id\_contrato}\}es superclave de
+                        \item BCNF (\{\att{nro\_audit}, \att{id\_contrato}\} es superclave de
                               \ent{auditoria} y está del lado izquierdo de su dependencia funcional).
                     \end{itemize}
           \end{itemize}
+
+\subsubsection{Estado de la base de datos}
+
+Todas las entidades se encuentran en BCNF, entonces la base de datos entera se
+encuentra en forma normal de Boyce-Codd.
 
 \subsection{Implementación}
 \label{sec:implementacion}
