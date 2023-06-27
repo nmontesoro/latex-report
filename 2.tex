@@ -318,4 +318,21 @@ indique lo contrario.
                     \end{itemize}
           \end{itemize}
 
+\subsection{Implementación}
 
+La implementación de la base de datos se hizo con MySQL. Se eligió este RDBMS 
+por ser uno de los más populares y ampliamente utilizado en la industria, por su
+facilidad de instalación y uso, por ser compatible con una amplia gama de 
+lenguajes de programación y, además, por ser de código abierto y contar con una
+versión gratuita.
+
+La aplicación o \textit{frontend} se desarrolló con Blazor, un 
+\textit{framework} de desarrollo web de Microsoft que permite crear aplicaciones
+interactivas y de una sola página (SPA, \textit{single-page applications}) 
+utilizando C\# en lugar de JavaScript.
+
+Finalmente, se creó una imagen de Docker para poder crear la base de datos,
+compilar la aplicación y ejecutarla con un sólo comando, y sin instalar 
+dependencias adicionales. Todo el código se encuentra disponible en 
+\url{https://github.com/nmontesoro/dbd}, junto con las instrucciones para su
+ejecución y algunas capturas de pantalla de la aplicación web.
