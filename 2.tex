@@ -337,3 +337,30 @@ compilar la aplicación y ejecutarla con un sólo comando, y sin instalar
 dependencias adicionales. Todo el código se encuentra disponible en 
 \url{https://github.com/nmontesoro/dbd}, junto con las instrucciones para su
 ejecución y algunas capturas de pantalla de la aplicación web.
+
+\subsubsection{Notas sobre la implementación}
+
+Los niveles de seguridad se evalúan en base a \ent{seguridad}.\att{nivel}; el 
+\att{id\_seg} es completamente independiente. Si bien esto agrega complejidad
+a algunas consultas, simplifica el agregar nuevos niveles de seguridad (incluso
+intermedios).
+
+Los scripts de creación de la base de datos se encuentran en el directorio 
+\texttt{./mysql-files}. Están comentados de manera de ayudar a la comprensión
+del código y de definir a qué consigna responde cada \textit{trigger}, 
+\textit{stored procedure} o \textit{constraint}.
+
+El archivo \texttt{./Dockerfile.backend} es el encargado de crear la base de 
+datos a partir de los scripts mencionados anteriormente, mientras que 
+\texttt{./Dockerfile.frontend} compila la aplicación web y la ejecuta.
+El archivo \texttt{./docker-compose.yml} es un archivo de configuración de 
+Docker Compose que define dos servicios: uno para el \textit{backend} y otro 
+para el \textit{frontend}. Cada servicio se construye a partir de su propio 
+Dockerfile y se configura para exponer puertos específicos que puedan ser 
+utilizados para acceder a los servicios desde el \textit{host}. Esto permite la
+creación de un único contenedor con ambos servicios.
+
+El contenedor de Docker está configurado para mostrar la aplicación web en el 
+puerto 80, y para permitir el acceso directo a la base de datos mediante el 
+puerto 3306, con usuario \verb|root| y contraseña \verb|PwdDbd|.
+
